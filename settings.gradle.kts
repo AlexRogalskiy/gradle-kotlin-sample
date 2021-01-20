@@ -4,7 +4,6 @@ rootProject.name = "io.nullables.api.sample"
 
 include(
   "sample-appflow",
-  //"sample-bom",
   "sample-testflow"
 )
 
