@@ -49,10 +49,12 @@ subprojects {
       groupId = project.group as? String
       artifactId = project.name
       version = project.version as? String
+
       pom {
-        description.set("Static code analysis for Kotlin")
-        name.set("detekt")
-        url.set("https://detekt.github.io/detekt")
+        name.set("gradle-kotlin-sample")
+        description.set("Gradle Kotlin sample project")
+        url.set("http://www.github.com/AlexRogalskiy/gradle-kotlin-sample")
+
         licenses {
           license {
             name.set("The Apache Software License, Version 2.0")
@@ -60,6 +62,7 @@ subprojects {
             distribution.set("repo")
           }
         }
+
         developers {
           developer {
             id.set("AlexRogalskiy")
@@ -67,7 +70,10 @@ subprojects {
             email.set("alexander.rogalsky@yandex.ru")
           }
         }
+
         scm {
+          connection.set("scm:git:http://www.github.com/AlexRogalskiy/gradle-kotlin-sample")
+          developerConnection.set("scm:git:http://github.com/AlexRogalskiy/gradle-kotlin-sample")
           url.set("https://github.com/AlexRogalskiy/gradle-kotlin-sample")
         }
       }

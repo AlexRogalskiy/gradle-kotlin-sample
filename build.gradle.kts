@@ -219,58 +219,6 @@ subprojects {
   }
 }
 
-//publishing {
-//  repositories {
-//    maven {
-//      val releasesRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-//      val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
-//      name = "deploy"
-//      url = if (Ci.isRelease) releasesRepoUrl else snapshotsRepoUrl
-//      credentials {
-//        username = System.getenv("OSSRH_USERNAME") ?: ""
-//        password = System.getenv("OSSRH_PASSWORD") ?: ""
-//      }
-//    }
-//  }
-//
-//  publications {
-//    register("mavenJava", MavenPublication::class) {
-//      from(components["java"])
-//      pom {
-//        name.set("avro4k-core")
-//        description.set("Avro format support for kotlinx.serialization")
-//        url.set("http://www.github.com/avro-kotlin/avro4k")
-//
-//        scm {
-//          connection.set("scm:git:http://www.github.com/avro-kotlin/avro4k")
-//          developerConnection.set("scm:git:http://github.com/avro-kotlin/avro4k")
-//          url.set("http://www.github.com/avro-kotlin/avro4k")
-//        }
-//
-//        licenses {
-//          license {
-//            name.set("Apache-2.0")
-//            url.set("https://opensource.org/licenses/Apache-2.0")
-//          }
-//        }
-//
-//        developers {
-//          developer {
-//            id.set("sksamuel")
-//            name.set("Stephen Samuel")
-//            email.set("sam@sksamuel.com")
-//          }
-//          developer {
-//            id.set("thake")
-//            name.set("Thorsten Hake")
-//            email.set("mail@thorsten-hake.com")
-//          }
-//        }
-//      }
-//    }
-//  }
-//}
-
 object Dependencies {
   object Plugins {
     const val DETEKT_PLUGIN = "1.15.0"
@@ -278,7 +226,6 @@ object Dependencies {
 
   object Libs {
     const val RXJAVA_VERSION = "2.2.20"
-    const val JUNIT_VERSION = "4.12"
     const val DETEKT_VERSION = "1.15.0"
     const val ARROW_VERSION = "0.11.0"
     const val KTLINT_VERSION = "0.31.0"
