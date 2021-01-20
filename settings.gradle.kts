@@ -1,4 +1,4 @@
-rootProject.name = "io.nullables.api.sample"
+rootProject.name = "gradle-kotlin-sample"
 
 include(
   "appflow",

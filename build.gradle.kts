@@ -37,24 +37,24 @@ idea {
   module {
     sourceDirs.plusAssign(
       files(
-        "build/generated/source/kapt/main",
-        "build/generated/source/kapt/debug",
-        "build/generated/source/kapt/release",
-        "build/generated/source/kaptKotlin/main",
-        "build/generated/source/kaptKotlin/debug",
-        "build/generated/source/kaptKotlin/release",
-        "build/tmp/kapt/main/kotlinGenerated"
+        "$buildDir/generated/source/kapt/main",
+        "$buildDir/generated/source/kapt/debug",
+        "$buildDir/generated/source/kapt/release",
+        "$buildDir/generated/source/kaptKotlin/main",
+        "$buildDir/generated/source/kaptKotlin/debug",
+        "$buildDir/generated/source/kaptKotlin/release",
+        "$buildDir/tmp/kapt/main/kotlinGenerated"
       )
     )
     generatedSourceDirs.plusAssign(
       files(
-        "build/generated/source/kapt/main",
-        "build/generated/source/kapt/debug",
-        "build/generated/source/kapt/release",
-        "build/generated/source/kaptKotlin/main",
-        "build/generated/source/kaptKotlin/debug",
-        "build/generated/source/kaptKotlin/release",
-        "build/tmp/kapt/main/kotlinGenerated"
+        "$buildDir/generated/source/kapt/main",
+        "$buildDir/generated/source/kapt/debug",
+        "$buildDir/generated/source/kapt/release",
+        "$buildDir/generated/source/kaptKotlin/main",
+        "$buildDir/generated/source/kaptKotlin/debug",
+        "$buildDir/generated/source/kaptKotlin/release",
+        "$buildDir/tmp/kapt/main/kotlinGenerated"
       )
     )
   }
@@ -122,15 +122,15 @@ detekt {
   reports {
     xml {
       enabled = true
-      destination = file("$$buildDir/reports/build.xml")
+      destination = file("$buildDir/reports/build.xml")
     }
     html {
       enabled = true
-      destination = file("$$buildDir/reports/build.html")
+      destination = file("$buildDir/reports/build.html")
     }
     txt {
       enabled = true
-      destination = file("$$buildDir/reports/build.txt")
+      destination = file("$buildDir/reports/build.txt")
     }
     sarif {
       enabled = true
