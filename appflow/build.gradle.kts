@@ -1,5 +1,3 @@
-//apply("../publish.gradle.kts")
-
 plugins {
   java
 }

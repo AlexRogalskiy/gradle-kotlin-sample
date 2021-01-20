@@ -1,5 +1,3 @@
-//apply("../publish.gradle.kts")
-
 plugins {
   java
 }
@@ -7,6 +5,7 @@ plugins {
 repositories {
   mavenCentral()
   jcenter()
+
   maven("https://dl.bintray.com/spekframework/spek-dev")
 }
 

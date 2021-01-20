@@ -1,7 +1,9 @@
-apply(plugin = "java")
-apply(plugin = "java-library")
-apply(plugin = "maven-publish")
-apply(plugin = "signing")
+plugins {
+  java
+  `java-library`
+  `maven-publish`
+  signing
+}
 
 repositories {
   mavenCentral()

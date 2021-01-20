@@ -181,19 +181,19 @@ detekt {
   reports {
     xml {
       enabled = true
-      destination = file("$projectDir/build/reports/build.xml")
+      destination = file("$$buildDir/reports/build.xml")
     }
     html {
       enabled = true
-      destination = file("$projectDir/build/reports/build.html")
+      destination = file("$$buildDir/reports/build.html")
     }
     txt {
       enabled = true
-      destination = file("$projectDir/build/reports/build.txt")
+      destination = file("$$buildDir/reports/build.txt")
     }
     sarif {
       enabled = true
-      destination = file("$projectDir/build/reports/detekt.sarif")
+      destination = file("$$buildDir/reports/detekt.sarif")
     }
   }
 }
