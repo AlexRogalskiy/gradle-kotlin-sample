@@ -1,0 +1,148 @@
+#
+# Standard ignore list (do not edit manually)
+#
+
+bin/
+tmp/
+.metadata
+.gradle
+.build
+.allure
+.storage
+packages/
+site/
+.classpath
+.project
+.settings/
+target/
+allure-results/
+.idea/
+.reporting/
+*.iml
+*.iws
+*.bak
+*.episode
+.DS_Store
+log/
+*.log
+*.props
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### LaTeX ###
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.glg
+*.glo
+*.gls
+*.ilg
+*.ind
+*.ist
+*.lof
+*.lot
+*.maf
+*.mtc
+*.mtc0
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.ps
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdy
+*.tdo
+
+
+## Intermediate documents:
+*-converted-to.*
+# these rules might exclude image files for figures etc.
+# *.ps
+# *.eps
+# *.pdf
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bcf
+*-blx.aux
+*-blx.bib
+*.brf
+*.run.xml
+
+## Build tool auxiliary files:
+*.synctex.gz(busy)
+
+## Auxiliary and intermediate files from other packages:
+
+# algorithms
+*.loa
+
+# amsthm
+*.thm
+
+
+#(e)ledmac/(e)ledpar
+*.end
+*.[1-9][0-9][0-9]
+*.[1-9]R
+*.[1-9][0-9]R
+*.[1-9][0-9][0-9]R
+*.eledsec[1-9]
+*.eledsec[1-9]R
+*.eledsec[1-9][0-9]
+*.eledsec[1-9][0-9]R
+*.eledsec[1-9][0-9][0-9]
+*.eledsec[1-9][0-9][0-9]R
+
+# listings
+*.lol
+
+# minted
+*.pyg
+
+# morewrites
+*.mw
+
+# sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+
+# sympy
+*.sout
+*.sympy
+sympy-plots-for-*.tex/
+
+## Maven
+
+/classes/
+/out/
+*/build/
+.gradletasknamecache
+/detekt-cli/src/test/kotlin/io/gitlab/arturbosch/detekt/cli/ReproduceSpec.kt
+/detekt-cli/src/test/kotlin/io/gitlab/arturbosch/detekt/cli/Test.kt
+*/out
+/docs/_site
+/docs/.bundle
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid committing generated documentation to the repo
+/docs/pages/documentation
+/docs/pages/kdoc
+/docs/vendor/
+
+#
+# Embedded database list
+#
+*.lobs
+*.lck
