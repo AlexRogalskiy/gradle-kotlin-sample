@@ -1,14 +1,14 @@
 object Versions {
-    const val DETEKT: String = "1.15.0"
+    const val PROJECT_VERSION: String = "1.0.0"
     const val JVM_TARGET: String = "1.8"
-    const val API_VERSION: String = "1.1"
-    const val LANGUAGE_VERSION: String = "1.1"
+    const val API_VERSION: String = "1.4"
+    const val LANGUAGE_VERSION: String = "1.4"
     const val JACOCO: String = "0.8.6"
 
     fun currentOrSnapshot(): String {
         if (System.getProperty("snapshot")?.toBoolean() == true) {
-            return "$DETEKT-SNAPSHOT"
+            return "$PROJECT_VERSION-SNAPSHOT"
         }
-        return DETEKT
+        return PROJECT_VERSION
     }
 }

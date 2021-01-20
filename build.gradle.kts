@@ -1,47 +1,22 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
-buildscript {
-  repositories {
-    mavenCentral()
-    mavenLocal()
-    google()
-    jcenter {
-      content {
-        // just allow to include kotlinx projects
-        // detekt needs 'kotlinx-html' for the html report
-        includeGroup("org.jetbrains.kotlinx")
-      }
-    }
-    maven {
-      name = "Sonatype repository";
-      url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
-    }
-    maven {
-      name = "Gradle repository";
-      url = uri("https://plugins.gradle.org/m2/")
-    }
-    maven {
-      name = "Bintray repository";
-      url = uri("https://dl.bintray.com/arrow-kt/arrow-kt/")
-    }
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    maven("https://kotlin.bintray.com/kotlinx")
-    gradlePluginPortal()
-  }
-}
-
 repositories {
   mavenCentral()
-  jcenter()
+  mavenLocal()
   google()
+  jcenter {
+    content {
+      // detekt needs 'kotlinx-html' for the html report
+      includeGroup("org.jetbrains.kotlinx")
+    }
+  }
 
+  maven("https://oss.sonatype.org/content/repositories/snapshots/")
+  maven("https://plugins.gradle.org/m2/")
+  maven("https://dl.bintray.com/arrow-kt/arrow-kt/")
   maven("https://dl.bintray.com/kotlin/kotlin-eap")
   maven("https://kotlin.bintray.com/kotlinx")
 }
 
 plugins {
-  //kotlin("jvm")
-
   id("org.jetbrains.kotlin.jvm")
   id("org.jetbrains.kotlin.kapt")
 
@@ -54,38 +29,36 @@ plugins {
   id("binary-compatibility-validator")
   id("io.gitlab.arturbosch.detekt")
 
-  //id("io.kotest")
-
   id("maven")
   id("idea")
 }
 
-//idea {
-//  module {
-//    sourceDirs.plusAssign(
-//      files(
-//        "build/generated/source/kapt/main",
-//        "build/generated/source/kapt/debug",
-//        "build/generated/source/kapt/release",
-//        "build/generated/source/kaptKotlin/main",
-//        "build/generated/source/kaptKotlin/debug",
-//        "build/generated/source/kaptKotlin/release",
-//        "build/tmp/kapt/main/kotlinGenerated"
-//      )
-//    )
-//    generatedSourceDirs.plusAssign(
-//      files(
-//        "build/generated/source/kapt/main",
-//        "build/generated/source/kapt/debug",
-//        "build/generated/source/kapt/release",
-//        "build/generated/source/kaptKotlin/main",
-//        "build/generated/source/kaptKotlin/debug",
-//        "build/generated/source/kaptKotlin/release",
-//        "build/tmp/kapt/main/kotlinGenerated"
-//      )
-//    )
-//  }
-//}
+idea {
+  module {
+    sourceDirs.plusAssign(
+      files(
+        "build/generated/source/kapt/main",
+        "build/generated/source/kapt/debug",
+        "build/generated/source/kapt/release",
+        "build/generated/source/kaptKotlin/main",
+        "build/generated/source/kaptKotlin/debug",
+        "build/generated/source/kaptKotlin/release",
+        "build/tmp/kapt/main/kotlinGenerated"
+      )
+    )
+    generatedSourceDirs.plusAssign(
+      files(
+        "build/generated/source/kapt/main",
+        "build/generated/source/kapt/debug",
+        "build/generated/source/kapt/release",
+        "build/generated/source/kaptKotlin/main",
+        "build/generated/source/kaptKotlin/debug",
+        "build/generated/source/kaptKotlin/release",
+        "build/tmp/kapt/main/kotlinGenerated"
+      )
+    )
+  }
+}
 
 configurations {
   "implementation" {
@@ -126,17 +99,16 @@ subprojects {
     mavenCentral()
   }
 
-  //val implementation by configurations
-
   dependencies {
-    // Annotation processors
+    // kotlin library dependencies
+    kotlin(module = "jvm", version = "1.4.71")
+    implementation(kotlin("stdlib-jdk8"))
+
+    // annotation processors
     kapt("io.arrow-kt:arrow-meta:${Dependencies.Libs.ARROW_VERSION}")
     kaptTest("io.arrow-kt:arrow-meta:${Dependencies.Libs.ARROW_VERSION}")
 
-    // Jdk library dependencies
-    implementation(kotlin("stdlib-jdk8"))
-
-    // Arrow library dependencies
+    // arrow library dependencies
     implementation("io.arrow-kt:arrow-annotations:${Dependencies.Libs.ARROW_VERSION}")
     implementation("io.arrow-kt:arrow-core:${Dependencies.Libs.ARROW_VERSION}")
     implementation("io.arrow-kt:arrow-fx:${Dependencies.Libs.ARROW_VERSION}")
@@ -147,27 +119,25 @@ subprojects {
     implementation("io.arrow-kt:arrow-mtl:${Dependencies.Libs.ARROW_VERSION}")
     implementation("io.arrow-kt:arrow-syntax:${Dependencies.Libs.ARROW_VERSION}")
 
-    // RxJava library dependencies
+    // rxjava library dependencies
     implementation("io.reactivex.rxjava2:rxjava:${Dependencies.Libs.DETEKT_VERSION}")
-
-    // Kotlinx library dependencies
+    // kotlinx library dependencies
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Dependencies.Libs.KOTLINX_COROUTINES_VERSION}")
-
-    // Kotest library dependencies
+    // kotest library dependencies
     testImplementation("io.kotest:kotest-assertions-core-jvm:${Dependencies.Libs.KOTEST_VERSION}")
     testImplementation("io.kotest:kotest-runner-junit5-jvm:${Dependencies.Libs.KOTEST_VERSION}")
-
-    // Junit5 library dependencies
+    // junit5 library dependencies
     testImplementation("io.kotlintest:kotlintest-runner-junit5:${Dependencies.Libs.KOTLIN_TEST_VERSION}")
-
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:${Dependencies.Libs.JUNIT_VINTAGE_VERSION}")
   }
 
   tasks.named<Test>("test") {
     useJUnitPlatform()
+
     filter {
       isFailOnNoMatchingTests = false
     }
+
     testLogging {
       showExceptions = true
       showStandardStreams = true
@@ -199,7 +169,10 @@ buildScan {
 
 detekt {
   failFast = true
+  parallel = true
+  ignoreFailures = false
   buildUponDefaultConfig = true
+  disableDefaultRuleSets = false
   toolVersion = Dependencies.Libs.DETEKT_VERSION
   config =
     files("$projectDir/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
@@ -208,15 +181,19 @@ detekt {
   reports {
     xml {
       enabled = true
-      destination = file("reports/build.xml")
+      destination = file("$projectDir/build/reports/build.xml")
     }
     html {
       enabled = true
-      destination = file("reports/build.html")
+      destination = file("$projectDir/build/reports/build.html")
     }
     txt {
       enabled = true
-      destination = file("reports/build.txt")
+      destination = file("$projectDir/build/reports/build.txt")
+    }
+    sarif {
+      enabled = true
+      destination = file("$projectDir/build/reports/detekt.sarif")
     }
   }
 }

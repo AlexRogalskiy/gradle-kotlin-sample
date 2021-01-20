@@ -1,36 +1,33 @@
 plugins {
-    kotlin("jvm") apply false
-    jacoco apply false
+  kotlin("jvm") apply false
+  jacoco apply false
 }
 
 subprojects {
-    group = "io.gitlab.arturbosch.detekt"
-    version = Versions.currentOrSnapshot()
+  group = "io.nullables.api.sample"
+  version = Versions.currentOrSnapshot()
 }
 
 jacoco.toolVersion = Versions.JACOCO
 
 val examplesOrTestUtils = setOf(
-    "detekt-bom",
-    "detekt-test",
-    "detekt-test-utils",
-    "detekt-sample-extensions"
+  "testflow"
 )
 
 tasks {
-    jacocoTestReport {
-        executionData.setFrom(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
+  jacocoTestReport {
+    executionData.setFrom(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
 
-        subprojects
-            .filterNot { it.name in examplesOrTestUtils }
-            .forEach {
-                this@jacocoTestReport.sourceSets(it.sourceSets.main.get())
-                this@jacocoTestReport.dependsOn(it.tasks.test)
-            }
+    subprojects
+      .filterNot { it.name in examplesOrTestUtils }
+      .forEach {
+        this@jacocoTestReport.sourceSets(it.sourceSets.main.get())
+        this@jacocoTestReport.dependsOn(it.tasks.test)
+      }
 
-        reports {
-            xml.isEnabled = true
-            xml.destination = file("$buildDir/reports/jacoco/report.xml")
-        }
+    reports {
+      xml.isEnabled = true
+      xml.destination = file("$buildDir/reports/jacoco/report.xml")
     }
+  }
 }

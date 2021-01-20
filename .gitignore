@@ -1,31 +1,35 @@
 #
 # Standard ignore list (do not edit manually)
 #
-
+api/
 bin/
 tmp/
-.metadata
-.gradle
-.build
-.allure
-.storage
+build/*
 packages/
-site/
-.classpath
-.project
-.settings/
 target/
+log/
+site/
 allure-results/
+
+.settings/
 .idea/
 .reporting/
+
+.DS_Store
+.metadata
+.gradle
+.classpath
+.project
+.allure
+.storage
+
 *.iml
 *.iws
 *.bak
 *.episode
-.DS_Store
-log/
 *.log
 *.props
+*.jar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -62,7 +66,6 @@ hs_err_pid*
 *.xdy
 *.tdo
 
-
 ## Intermediate documents:
 *-converted-to.*
 # these rules might exclude image files for figures etc.
@@ -84,10 +87,8 @@ hs_err_pid*
 
 # algorithms
 *.loa
-
 # amsthm
 *.thm
-
 
 #(e)ledmac/(e)ledpar
 *.end
@@ -122,7 +123,6 @@ hs_err_pid*
 sympy-plots-for-*.tex/
 
 ## Maven
-
 /classes/
 /out/
 */build/

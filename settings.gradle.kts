@@ -1,10 +1,8 @@
-enableFeaturePreview("GRADLE_METADATA")
-
 rootProject.name = "io.nullables.api.sample"
 
 include(
-  "sample-appflow",
-  "sample-testflow"
+  "appflow",
+  "testflow"
 )
 
 pluginManagement {

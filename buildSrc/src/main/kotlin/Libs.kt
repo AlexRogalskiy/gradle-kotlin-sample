@@ -1,5 +1,4 @@
 object Libs {
-
     const val kotlinVersion = "1.4.21"
     const val org = "io.nullables.api.sample"
 
