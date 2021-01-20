@@ -1,0 +1,13 @@
+theme: jekyll-theme-cayman
+
+permalink: pretty
+
+url: https://alexander-rogalsky.gitbook.io/gradle-kotlin-sample
+baseurl: /
+title: Gradle Kotlin sample
+description: Explores different features of gradle by using Kotlin DSL
+
+author: Alexander Rogalskiy
+
+docs: https://github.com/AlexRogalskiy/gradle-kotlin-sample/wiki
+blog: https://alexrogalskiy.github.io/
