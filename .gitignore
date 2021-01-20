@@ -1,9 +1,9 @@
 #
 # Standard ignore list (do not edit manually)
 #
-api/
 bin/
 tmp/
+api/*
 build/*
 packages/
 target/
