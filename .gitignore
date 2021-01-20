@@ -3,8 +3,8 @@
 #
 bin/
 tmp/
-api/*
-build/*
+api/
+build/
 packages/
 target/
 log/
