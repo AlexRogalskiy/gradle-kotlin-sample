@@ -77,12 +77,64 @@ configure<JavaPluginConvention> {
   targetCompatibility = JavaVersion.VERSION_11
 }
 
+configure<kotlinx.validation.ApiValidationExtension> {
+  /**
+   * Packages that are excluded from public API dumps even if they
+   * contain public API.
+   */
+  ignoredPackages.add("kotlinx.coroutines.internal")
+  /**
+   * Sub-projects that are excluded from API validation
+   */
+  ignoredProjects.addAll(listOf("testflow"))
+  /**
+   * Flag to programmatically disable compatibility validator
+   */
+  validationDisabled = false
+}
+
 //additional source sets
 sourceSets {
   val examples by creating {
     java {
       compileClasspath += sourceSets.main.get().output
       runtimeClasspath += sourceSets.main.get().output
+    }
+  }
+}
+
+buildScan {
+  termsOfServiceUrl = "https://gradle.com/terms-of-service"
+  termsOfServiceAgree = "yes"
+}
+
+detekt {
+  failFast = true
+  parallel = true
+  ignoreFailures = false
+  buildUponDefaultConfig = true
+  disableDefaultRuleSets = false
+  toolVersion = Dependencies.Libs.DETEKT_VERSION
+  config =
+    files("$projectDir/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
+  baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
+
+  reports {
+    xml {
+      enabled = true
+      destination = file("$$buildDir/reports/build.xml")
+    }
+    html {
+      enabled = true
+      destination = file("$$buildDir/reports/build.html")
+    }
+    txt {
+      enabled = true
+      destination = file("$$buildDir/reports/build.txt")
+    }
+    sarif {
+      enabled = true
+      destination = file("$$buildDir/reports/detekt.sarif")
     }
   }
 }
@@ -160,41 +212,10 @@ subprojects {
       freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
     }
   }
-}
 
-buildScan {
-  termsOfServiceUrl = "https://gradle.com/terms-of-service"
-  termsOfServiceAgree = "yes"
-}
-
-detekt {
-  failFast = true
-  parallel = true
-  ignoreFailures = false
-  buildUponDefaultConfig = true
-  disableDefaultRuleSets = false
-  toolVersion = Dependencies.Libs.DETEKT_VERSION
-  config =
-    files("$projectDir/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
-  baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
-
-  reports {
-    xml {
-      enabled = true
-      destination = file("$$buildDir/reports/build.xml")
-    }
-    html {
-      enabled = true
-      destination = file("$$buildDir/reports/build.html")
-    }
-    txt {
-      enabled = true
-      destination = file("$$buildDir/reports/build.txt")
-    }
-    sarif {
-      enabled = true
-      destination = file("$$buildDir/reports/detekt.sarif")
-    }
+  tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
+    // Target version of the generated JVM bytecode. It is used for type resolution.
+    this.jvmTarget = Versions.JVM_TARGET
   }
 }
 
@@ -249,12 +270,6 @@ detekt {
 //    }
 //  }
 //}
-
-// Kotlin dsl
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-  // Target version of the generated JVM bytecode. It is used for type resolution.
-  this.jvmTarget = Versions.JVM_TARGET
-}
 
 object Dependencies {
   object Plugins {
