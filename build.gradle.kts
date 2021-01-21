@@ -145,6 +145,7 @@ subprojects {
 
   group = "io.nullables.api.sample"
   version = "1.0.0-SNAPSHOT"
+  description = 'Gradle kotlin sample project'
 
   repositories {
     maven("https://dl.bintray.com/kotlin/kotlin-eap")
