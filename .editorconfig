@@ -22,6 +22,10 @@ max_line_length = 100
 indent_size = 4
 max_line_length = 100
 
+[*.kts]
+indent_size = 2
+max_line_length = 100
+
 [*.story]
 indent_size = 4
 max_line_length = 79
