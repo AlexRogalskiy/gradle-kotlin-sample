@@ -29,6 +29,7 @@ plugins {
   id("binary-compatibility-validator")
   id("io.gitlab.arturbosch.detekt")
 
+  id("jacoco")
   id("maven")
   id("idea")
 }
@@ -217,6 +218,19 @@ subprojects {
   tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
     // Target version of the generated JVM bytecode. It is used for type resolution.
     this.jvmTarget = Versions.JVM_TARGET
+  }
+
+  tasks.withType<JacocoReport> {
+    reports {
+      xml.isEnabled = true
+      html.isEnabled = true
+    }
+  }
+}
+
+tasks {
+  check {
+    dependsOn(jacocoTestReport)
   }
 }
 
