@@ -127,8 +127,6 @@ sympy-plots-for-*.tex/
 /out/
 */build/
 .gradletasknamecache
-/detekt-cli/src/test/kotlin/io/gitlab/arturbosch/detekt/cli/ReproduceSpec.kt
-/detekt-cli/src/test/kotlin/io/gitlab/arturbosch/detekt/cli/Test.kt
 */out
 /docs/_site
 /docs/.bundle

@@ -31,34 +31,6 @@ plugins {
 
   id("jacoco")
   id("maven")
-  id("idea")
-}
-
-idea {
-  module {
-    sourceDirs.plusAssign(
-      files(
-        "$buildDir/generated/source/kapt/main",
-        "$buildDir/generated/source/kapt/debug",
-        "$buildDir/generated/source/kapt/release",
-        "$buildDir/generated/source/kaptKotlin/main",
-        "$buildDir/generated/source/kaptKotlin/debug",
-        "$buildDir/generated/source/kaptKotlin/release",
-        "$buildDir/tmp/kapt/main/kotlinGenerated"
-      )
-    )
-    generatedSourceDirs.plusAssign(
-      files(
-        "$buildDir/generated/source/kapt/main",
-        "$buildDir/generated/source/kapt/debug",
-        "$buildDir/generated/source/kapt/release",
-        "$buildDir/generated/source/kaptKotlin/main",
-        "$buildDir/generated/source/kaptKotlin/debug",
-        "$buildDir/generated/source/kaptKotlin/release",
-        "$buildDir/tmp/kapt/main/kotlinGenerated"
-      )
-    )
-  }
 }
 
 configurations {
@@ -174,7 +146,7 @@ subprojects {
     implementation("io.arrow-kt:arrow-syntax:${Dependencies.Libs.ARROW_VERSION}")
 
     // rxjava library dependencies
-    implementation("io.reactivex.rxjava2:rxjava:${Dependencies.Libs.DETEKT_VERSION}")
+    implementation("io.reactivex.rxjava2:rxjava:${Dependencies.Libs.RXJAVA_VERSION}")
     // kotlinx library dependencies
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Dependencies.Libs.KOTLINX_COROUTINES_VERSION}")
     // kotest library dependencies
