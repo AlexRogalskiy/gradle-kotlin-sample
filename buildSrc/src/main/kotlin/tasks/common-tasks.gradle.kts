@@ -25,6 +25,8 @@ import utils.parallelForks
 import extensions.getProjectGroup
 import extensions.getProjectVersion
 import extensions.getProjectDescription
+import extensions.createKotlinMainSources
+import extensions.createKotlinTestSources
 
 plugins {
   id("org.jetbrains.kotlin.jvm") apply false
@@ -74,6 +76,9 @@ configure<JavaPluginConvention> {
 
 // additional source sets
 sourceSets {
+  createKotlinMainSources(this)
+  createKotlinTestSources(this)
+
   val examples by creating {
     java {
       compileClasspath += sourceSets.main.get().output

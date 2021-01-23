@@ -19,7 +19,7 @@ import org.gradle.api.Project
 import java.io.File
 import java.util.*
 
-private const val VERSION_PROPERTIES_FILE_NAME = "keystore.properties"
+private const val VERSION_PROPERTIES_FILE_NAME = "gradle.properties"
 
 /**
  * Returns the requested properties file

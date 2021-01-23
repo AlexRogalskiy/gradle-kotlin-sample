@@ -17,73 +17,36 @@
 
 package extensions
 
+import misc.MainSources
+import misc.TestSources
+import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
+import org.gradle.api.tasks.SourceSet
 import utils.execute
 import utils.getProperty
 import utils.shouldTreatCompilerWarningsAsErrors
 
-///**
-// * An extension to create release build type.
-// *
-// * @param namedDomainObjectContainer The container to create the corresponding build type
-// *
-// * @return The release [BuildType]
-// */
-//fun Project.createRelease(namedDomainObjectContainer: NamedDomainObjectContainer<BuildType>) =
-//    Release.create(namedDomainObjectContainer, this)
-//
-///**
-// * An extension to create debug build type.
-// *
-// * @param namedDomainObjectContainer The container to create the corresponding build type
-// *
-// * @return The debug [BuildType]
-// */
-//fun Project.createDebug(namedDomainObjectContainer: NamedDomainObjectContainer<BuildType>) =
-//    Debug.create(namedDomainObjectContainer, this)
+/**
+ * An extension to create main Kotlin source set.
+ *
+ * @param namedDomainObjectContainer The container to create the corresponding source set
+ *
+ * @return The main Kotlin [SourceSet]
+ */
+fun Project.createKotlinMainSources(
+    namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>
+) = MainSources.create(namedDomainObjectContainer, this)
 
-///**
-// * An extension to create main Kotlin source set.
-// *
-// * @param namedDomainObjectContainer The container to create the corresponding source set
-// *
-// * @return The main Kotlin [SourceSet]
-// */
-//fun Project.createKotlinMain(
-//    namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>
-//) = Main.create(namedDomainObjectContainer, this)
-//
-///**
-// * An extension to create test Kotlin source set.
-// *
-// * @param namedDomainObjectContainer The container to create the corresponding source set
-// *
-// * @return The test Kotlin [SourceSet]
-// */
-//fun Project.createKotlinTest(
-//    namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>
-//) = Test.create(namedDomainObjectContainer, this)
-
-///**
-// * An extension to create android test Kotlin source set.
-// *
-// * @param namedDomainObjectContainer The container to create the corresponding source set
-// *
-// * @return The android test Kotlin [SourceSet]
-// */
-//fun Project.createKotlinAndroidTest(
-//    namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>
-//) = AndroidTest.create(namedDomainObjectContainer, this)
-//
-///**
-// * An extension to create release signing config.
-// *
-// * @param namedDomainObjectContainer The container to create the corresponding signing config
-// *
-// * @return The release [SigningConfig]
-// */
-//fun Project.createReleaseConfig(namedDomainObjectContainer: NamedDomainObjectContainer<SigningConfig>) =
-//    ReleaseConfig.create(namedDomainObjectContainer, this)
+/**
+ * An extension to create test Kotlin source set.
+ *
+ * @param namedDomainObjectContainer The container to create the corresponding source set
+ *
+ * @return The test Kotlin [SourceSet]
+ */
+fun Project.createKotlinTestSources(
+    namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>
+) = TestSources.create(namedDomainObjectContainer, this)
 
 /**
  * Applies semantic versioning and returns the combined version name accordingly
