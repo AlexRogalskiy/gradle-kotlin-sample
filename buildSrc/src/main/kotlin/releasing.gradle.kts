@@ -74,11 +74,11 @@ val incrementMajor by tasks.registering { doLast { updateVersion { it.nextMajor(
 val applyDocVersion by tasks.registering(UpdateVersionInFileTask::class) {
   fileToUpdate = file("${rootProject.rootDir}/docs/_config.yml")
   linePartToFind = "project_version:"
-  lineTransformation = { "project_version: ${Versions.PROJECT_VERSION}" }
+  lineTransformation = { "project_version: ${Versions.currentOrSnapshot()}" }
 }
 
 val applySelfAnalysisVersion by tasks.registering(UpdateVersionInFileTask::class) {
   fileToUpdate = file("${rootProject.rootDir}/buildSrc/build.gradle.kts")
   linePartToFind = "const val PROJECT_VERSION ="
-  lineTransformation = { """    const val PROJECT_VERSION = "${Versions.PROJECT_VERSION}"""" }
+  lineTransformation = { """    const val PROJECT_VERSION = "${Versions.currentOrSnapshot()}"""" }
 }

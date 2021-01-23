@@ -39,7 +39,7 @@ java {
 //  }
 //}
 
-jacoco.toolVersion = Versions.JACOCO
+//jacoco.toolVersion = Versions.JACOCO
 
 //tasks.withType<Test>().configureEach {
 //  useJUnitPlatform()

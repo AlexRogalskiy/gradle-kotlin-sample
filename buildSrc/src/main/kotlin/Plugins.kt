@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package extensions
-//
-//import com.android.build.gradle.internal.dsl.TestOptions
-//
-///**
-// * Sets default options for test
-// */
-//fun TestOptions.applyDefault() {
-//    execution = "ANDROIDX_TEST_ORCHESTRATOR"
-//    unitTests.isReturnDefaultValues = true
-//    unitTests.isIncludeAndroidResources = true
-//    animationsDisabled = true
-//}
+object Plugins {
+    const val kotlinJvm = "org.jetbrains.kotlin.jvm"
+    const val kotlinKapt = "org.jetbrains.kotlin.kapt"
+    const val dokka = "org.jetbrains.dokka"
+    const val shadow = "com.github.johnrengelman.shadow"
+    const val versions = "com.github.ben-manes.versions"
+    const val compatValidator = "binary-compatibility-validator"
+    const val sonarQube = "org.sonarqube"
+}

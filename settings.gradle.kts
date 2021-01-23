@@ -25,7 +25,8 @@ pluginManagement {
 
 // build scan plugin can only be applied in settings file
 plugins {
-  id("com.gradle.enterprise") version "3.3.1"
+  @Suppress("UnstableApiUsage")
+  `gradle-enterprise`
 }
 
 gradleEnterprise {

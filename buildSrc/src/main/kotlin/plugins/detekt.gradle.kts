@@ -31,7 +31,7 @@ detekt {
   buildUponDefaultConfig = true
   disableDefaultRuleSets = false
 
-  toolVersion = Versions.DETEKT_VERSION
+  toolVersion = Versions.detekt
   input = files("src/main/kotlin", "src/test/kotlin", "src/main/java", "src/test/java")
 
   config =

@@ -19,11 +19,11 @@ package plugins
  * An object that holds all the plugins
  */
 object BuildPlugins {
-    const val DETEKT = "plugins.detekt"
-    const val UPDATE_DEPENDENCIES = "plugins.update-dependencies"
-    const val KTLINT = "plugins.ktlint"
-    const val SPOTLESS = "plugins.spotless"
-    const val GIT_HOOKS = "plugins.git-hooks"
-    const val TEST_LOGGER = "plugins.test-logger"
-    const val JACOCO = "plugins.jacoco"
+    const val detekt = "plugins.detekt"
+    const val update_dependencies = "plugins.update-dependencies"
+    const val ktlint = "plugins.ktlint"
+    const val spotless = "plugins.spotless"
+    const val git_hooks = "plugins.git-hooks"
+    const val test_logger = "plugins.test-logger"
+    const val jacoco = "plugins.jacoco"
 }

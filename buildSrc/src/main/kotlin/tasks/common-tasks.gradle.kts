@@ -22,12 +22,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utils.javaVersion
 import utils.kotlinVersion
 import utils.parallelForks
-import extensions.getSemanticAppVersionName
+import extensions.getProjectGroup
+import extensions.getProjectVersion
+import extensions.getProjectDescription
 
 plugins {
   id("org.jetbrains.kotlin.jvm") apply false
   id("org.jetbrains.kotlin.kapt") apply false
   id("maven") apply false
+  id("java") apply false
 }
 
 configurations {
@@ -36,15 +39,48 @@ configurations {
   }
 }
 
-//// additional source sets
-//sourceSets {
-//  val examples by creating {
-//    java {
-//      compileClasspath += sourceSets.main.get().output
-//      runtimeClasspath += sourceSets.main.get().output
-//    }
-//  }
+java {
+  sourceSets {
+    map { it.java.srcDir("src/${it.name}/kotlin") }
+  }
+}
+
+configure<SourceSetContainer> {
+  named("main") {
+    java.srcDir("src/core/java")
+  }
+}
+
+configure<JavaPluginConvention> {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
+//configure<kotlinx.validation.ApiValidationExtension> {
+//  /**
+//   * Packages that are excluded from public API dumps even if they
+//   * contain public API.
+//   */
+//  ignoredPackages.add("kotlinx.coroutines.internal")
+//  /**
+//   * Sub-projects that are excluded from API validation
+//   */
+//  ignoredProjects.addAll(listOf("testflow"))
+//  /**
+//   * Flag to programmatically disable compatibility validator
+//   */
+//  validationDisabled = false
 //}
+
+// additional source sets
+sourceSets {
+  val examples by creating {
+    java {
+      compileClasspath += sourceSets.main.get().output
+      runtimeClasspath += sourceSets.main.get().output
+    }
+  }
+}
 
 tasks {
   withType<JavaCompile> {
@@ -115,20 +151,6 @@ tasks {
     filter {
       isFailOnNoMatchingTests = false
     }
-
-//    testlogger {
-//      setTheme("standard-parallel")
-//      setShowExceptions(true)
-//      setShowStackTraces(true)
-//      setShowCauses(true)
-//      setShowFullStackTraces(true)
-//      setShowSummary(true)
-//      setShowSimpleNames(true)
-//      setShowStandardStreams(true)
-//      setShowPassedStandardStreams(false)
-//      setShowSkippedStandardStreams(false)
-//      setShowFailedStandardStreams(true)
-//    }
   }
 
   withType<Jar> {
@@ -139,7 +161,9 @@ tasks {
 //        configurations.compileClasspath.get().map {
 //          it.getPath()
 //        }.joinToString(" ")
-      attributes["ProjectVersion"] = getSemanticAppVersionName()
+      attributes["Project-Version"] = getProjectVersion()
+      attributes["Project-Group"] = getProjectGroup()
+      attributes["Project-Description"] = getProjectDescription()
     }
     from(sourceSets.main.get().output)
 

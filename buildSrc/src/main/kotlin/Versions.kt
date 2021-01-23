@@ -14,19 +14,38 @@
  * limitations under the License.
  */
 object Versions {
-    const val DETEKT_VERSION = "1.15.0"
+    // core
+    const val kotlin = "1.4.21"
+    const val kotlinx_serialization = "0.20.0"
+    const val kotlin_coroutines = "1.3.4"
+    const val rxjava = "2.2.20"
+    const val logback = "1.2.3"
+    const val arrow = "0.11.0"
 
-    const val PROJECT_VERSION: String = "1.0.0"
-    const val JVM_TARGET: String = "1.8"
-    const val API_VERSION: String = "1.4"
-    const val LANGUAGE_VERSION: String = "1.4"
-    const val JACOCO: String = "0.8.6"
-    const val KTLINT: String = "0.37.2"
+    // checkstyle
+    const val detekt = "1.15.0"
+    const val jacoco: String = "0.8.6"
+    const val ktlint: String = "0.37.2"
+
+    // test
+    const val mockk = "1.10.0"
+    const val junit_jupiter = "5.7.0"
+    const val junit_platform = "1.7.0"
+    const val kotlin_test = "3.4.2"
+    const val kotlin_faker = "1.6.0"
+    const val kotest_console = "4.1.3.2"
+    const val kotest_junit = "4.3.2"
+    const val kotlinx = "1.4.2"
+    const val klaxon = "5.4"
+    const val clikt = "2.6.0"
+
+    // project
+    const val project: String = "1.0.0"
 
     fun currentOrSnapshot(): String {
         if (System.getProperty("snapshot")?.toBoolean() == true) {
-            return "$PROJECT_VERSION-SNAPSHOT"
+            return "$project-SNAPSHOT"
         }
-        return PROJECT_VERSION
+        return project
     }
 }

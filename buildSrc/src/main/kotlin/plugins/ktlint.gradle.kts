@@ -24,7 +24,7 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 apply<KtlintPlugin>()
 
 configure<KtlintExtension> {
-  version.set(Versions.KTLINT)
+  version.set(Versions.ktlint)
 
   debug.set(true)
   verbose.set(true)

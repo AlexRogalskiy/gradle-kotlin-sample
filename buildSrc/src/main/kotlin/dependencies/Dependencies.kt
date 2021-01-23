@@ -14,124 +14,101 @@
  * limitations under the License.
  */
 package dependencies
-//
-//object Dependencies {
-//
-//    object Core {
-//        const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
-//        const val coroutines =
-//            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-//    }
-//
-//    object Lint {
-//        const val lint = "com.android.tools.lint:lint:${Versions.lint}"
-//        const val api = "com.android.tools.lint:lint-api:${Versions.lint}"
-//        const val checks = "com.android.tools.lint:lint-checks:${Versions.lint}"
-//        const val tests = "com.android.tools.lint:lint-tests:${Versions.lint}"
-//    }
-//
-//    object UI {
-//        const val material = "com.google.android.material:material:${Versions.material}"
-//        const val core_ktx = "androidx.core:core-ktx:${Versions.core}"
-//        const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
-//        const val recylerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
-//        const val constraint_layout =
-//            "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout}"
-//        const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragment_ktx}"
-//        const val activity_ktx = "androidx.activity:activity-ktx:${Versions.activity_ktx}"
-//    }
-//
-//    object Navigation {
-//        const val nav_fragment_ktx =
-//            "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
-//        const val nav_ui_ktx =
-//            "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
-//    }
-//
-//    object Pagination {
-//        const val runtime_ktx = "androidx.paging:paging-runtime-ktx:${Versions.pagination}"
-//    }
-//
-//    object Room {
-//        const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
-//        const val runtime_ktx = "androidx.room:room-runtime:${Versions.room}"
-//        const val compiler = "androidx.room:room-compiler:${Versions.room}"
-//    }
-//
-//    object Lifecycle {
-//        const val lifecycle_extensions =
-//            "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-//        const val viewmodel_ktx =
-//            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-//        const val livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-//        const val runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-//        const val common_java = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
-//        const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
-//    }
-//
-//    object Dagger {
-//        const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
-//        const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-//    }
-//
-//    object Network {
-//        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-//        const val retrofit_serialization_adapter =
-//            "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofit_serialization_adapter}"
-//        internal const val okhttp_bom = "com.squareup.okhttp3:okhttp-bom:${Versions.okhttp}"
-//        internal const val okhttp_logging = "com.squareup.okhttp3:logging-interceptor"
-//    }
-//
-//    object Other {
-//        const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
-//        const val coil = "io.coil-kt:coil:${Versions.coil}"
-//        const val oss_licenses = "com.google.android.gms:play-services-oss-licenses:${Versions.oss}"
-//    }
-//}
-//
-//internal object TestDependencies {
-//    // Core library
-//    const val test_core = "androidx.test:core:${Versions.test_core}"
-//    const val arch_core = "androidx.arch.core:core-testing:${Versions.arch_core}"
-//    const val coroutines_core =
-//        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
-//    const val serialization_runtime =
-//        "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinx_serialization_runtime}"
-//
-//    // Fragment
-//    const val fragment = "androidx.fragment:fragment-testing:${Versions.fragment}"
-//
-//    // Orchestrator
-//    const val orchestrator = "androidx.test:orchestrator:${Versions.orchestrator}"
-//
-//    // AndroidJUnitRunner and JUnit Rules
-//    const val runner = "androidx.test:runner:${Versions.runner}"
-//    const val rules = "androidx.test:rules:${Versions.rules}"
-//
-//    // Assertions
-//    const val junit = "androidx.test.ext:junit:${Versions.junit}"
-//    const val truth_ext = "androidx.test.ext:truth:${Versions.truth_ext}"
-//
-//    // Espresso dependencies
-//    const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core}"
-//    const val idling_resource =
-//        "androidx.test.espresso:espresso-idling-resource:${Versions.espresso_core}"
-//
-//    // Mock
-//    const val mockK = "io.mockk:mockk:${Versions.mockK}"
-//    const val mockK_android = "io.mockk:mockk-android:${Versions.mockK}"
-//    const val mock_web_server = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
-//
-//    // JUnit5
-//    // (Required) Writing and executing Unit Tests on the JUnit Platform
-//    const val jupiter_api = "org.junit.jupiter:junit-jupiter-api:${Versions.jupiter}"
-//    const val jupiter_engine = "org.junit.jupiter:junit-jupiter-engine:${Versions.jupiter}"
-//
-//    // (Optional) If you need "Parameterized Tests"
-//    const val jupiter_params = "org.junit.jupiter:junit-jupiter-params:${Versions.jupiter}"
-//
-//    // (Optional) If you also have JUnit 4-based tests
-//    const val vintage_engine = "org.junit.vintage:junit-vintage-engine:${Versions.jupiter}"
-//    const val android_test_runner =
-//        "de.mannodermaus.junit5:android-test-runner:${Versions.android_test_runner}"
-//}
+
+object Dependencies {
+
+    object Core {
+        // Kotlin dependencies
+        const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+
+        // Kotlinx dependencies
+        const val kotlinx_coroutines =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
+        const val kotlinx_serialization =
+            "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinx_serialization}"
+
+        // Clikt dependencies
+        const val clikt =
+            "com.github.ajalt:clikt:${Versions.clikt}"
+
+        // Arrow dependencies
+        const val arrow_meta =
+            "io.arrow-kt:arrow-meta:${Versions.arrow}"
+        const val arrow_annotations =
+            "io.arrow-kt:arrow-annotations:${Versions.arrow}"
+        const val arrow_core =
+            "io.arrow-kt:arrow-core:${Versions.arrow}"
+        const val arrow_fx =
+            "io.arrow-kt:arrow-fx:${Versions.arrow}"
+        const val arrow_fx_rx2 =
+            "io.arrow-kt:arrow-fx-rx2:${Versions.arrow}"
+        const val arrow_optics =
+            "io.arrow-kt:arrow-optics:${Versions.arrow}"
+        const val arrow_ui =
+            "io.arrow-kt:arrow-ui:${Versions.arrow}"
+        const val arrow_validation =
+            "io.arrow-kt:arrow-validation:${Versions.arrow}"
+        const val arrow_mtl =
+            "io.arrow-kt:arrow-mtl:${Versions.arrow}"
+        const val arrow_syntax =
+            "io.arrow-kt:arrow-syntax:${Versions.arrow}"
+
+        // Klaxon dependencies
+        const val klaxon =
+            "com.beust:klaxon:${Versions.klaxon}"
+
+        // Logback dependencies
+        const val logback =
+            "ch.qos.logback:logback-classic:${Versions.logback}"
+
+        // RxJava dependencies
+        const val rxjava =
+            "io.reactivex.rxjava2:rxjava:${Versions.rxjava}"
+    }
+
+    object Test {
+        // Mock dependencies
+        const val mockk = "io.mockk:mockk:${Versions.mockk}"
+
+        // Junit5 dependencies
+        const val junit_runner =
+            "org.junit.platform:junit-platform-runner:${Versions.junit_platform}"
+        const val junit_launcher =
+            "org.junit.platform:junit-platform-launcher:${Versions.junit_platform}"
+        const val junit_api = "org.junit.jupiter:junit-jupiter-api:${Versions.junit_jupiter}"
+        const val junit_engine =
+            "org.junit.jupiter:junit-jupiter-engine:${Versions.junit_jupiter}"
+
+        // (Optional) If you need "Parameterized Tests"
+        const val junit_params =
+            "org.junit.jupiter:junit-jupiter-params:${Versions.junit_jupiter}"
+
+        // (Optional) If you also have JUnit 4-based tests dependencies
+        const val junit_vintage =
+            "org.junit.vintage:junit-vintage-engine:${Versions.junit_jupiter}"
+
+        // Kotlinx test dependencies
+        const val kotlinx_coroutines_test =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlin_coroutines}"
+
+        // Kotest dependencies
+        const val kotest_assertions_arrow =
+            "io.kotest:kotest-assertions-arrow-jvm:${Versions.kotest_junit}"
+        const val kotest_assertions_core =
+            "io.kotest:kotest-assertions-core-jvm:${Versions.kotest_junit}"
+        const val kotest_property =
+            "io.kotest:kotest-property-jvm:${Versions.kotest_junit}"
+        const val kotest_console =
+            "io.kotest:kotest-runner-console-jvm:${Versions.kotest_console}"
+        const val kotest_junit =
+            "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest_junit}"
+
+        // Kotlin faker dependencies
+        const val kotlin_faker =
+            "io.github.serpro69:kotlin-faker:${Versions.kotlin_faker}"
+
+        // Kotlin test dependencies
+        const val kotlin_test_junit =
+            "io.kotlintest:kotlintest-runner-junit5:${Versions.kotlin_test}"
+    }
+}

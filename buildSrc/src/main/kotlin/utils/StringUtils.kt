@@ -55,3 +55,21 @@ internal fun getSemanticAppVersionName(): String {
 
     return "$majorCode.$minorCode.$patchCode"
 }
+
+/**
+ * Returns the combined project group name
+ *
+ * @return The group name
+ */
+internal fun getAppGroupName(): String {
+    return "io.nullables.api.sample"
+}
+
+/**
+ * Returns the project description
+ *
+ * @return The description
+ */
+internal fun getAppDescription(): String {
+    return "Gradle kotlin sample project"
+}

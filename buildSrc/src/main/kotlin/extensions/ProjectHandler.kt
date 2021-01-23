@@ -18,7 +18,6 @@
 package extensions
 
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import utils.execute
 import utils.getProperty
 import utils.shouldTreatCompilerWarningsAsErrors
@@ -89,9 +88,23 @@ import utils.shouldTreatCompilerWarningsAsErrors
 /**
  * Applies semantic versioning and returns the combined version name accordingly
  *
- * @return The version name
+ * @return The project version name
  */
-fun Project.getSemanticAppVersionName() = utils.getSemanticAppVersionName()
+fun Project.getProjectVersion() = utils.getSemanticAppVersionName()
+
+/**
+ * Returns the project group name
+ *
+ * @return The group name
+ */
+fun Project.getProjectGroup() = utils.getAppGroupName()
+
+/**
+ * Returns the project description
+ *
+ * @return The description
+ */
+fun Project.getProjectDescription() = utils.getAppDescription()
 
 /**
  * Basically fetches the recent git commit hash
@@ -105,23 +118,6 @@ internal inline val Project.gitSha: String
 internal fun Project.shouldTreatCompilerWarningsAsErrors() =
     shouldTreatCompilerWarningsAsErrors(this)
 
-///**
-// * If the instrumented tests live in the Android Library projects, running
-// * ./gradlew connectedDebugAndroidTest will run the androidTest related tasks for all the ones
-// * without any android tests at all. This is for performance purpose to reduce build time.
-// */
-//internal inline val Project.hasAndroidTestSource: Boolean
-//    get() {
-//        extensions
-//            .findByType(KotlinAndroidProjectExtension::class.java)
-//            ?.sourceSets
-//            ?.findByName("androidTest")
-//            ?.let {
-//                if (it.kotlin.files.isNotEmpty()) return true
-//            }
-//        return false
-//    }
-
 /**
  * Returns the requested property
  *
@@ -130,18 +126,3 @@ internal fun Project.shouldTreatCompilerWarningsAsErrors() =
  * @return The property as [String]
  */
 fun Project.getProperty(name: String) = getProperty(name, this)
-
-///**
-// * If the instrumented tests live in the Android Library projects, running
-// * ./gradlew connectedDebugAndroidTest will run the androidTest related tasks for all the ones
-// * without any android tests at all. This is for performance purpose to reduce build time.
-// */
-//fun Project.configureAndroidTests() {
-//    if (!hasAndroidTestSource) {
-//        project.tasks.configureEach {
-//            if (name.contains("androidTest", ignoreCase = true)) {
-//                enabled = false
-//            }
-//        }
-//    }
-//}

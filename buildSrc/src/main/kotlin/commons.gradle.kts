@@ -23,7 +23,7 @@ subprojects {
   version = Versions.currentOrSnapshot()
 }
 
-jacoco.toolVersion = Versions.JACOCO
+jacoco.toolVersion = Versions.jacoco
 
 val examplesOrTestUtils = setOf(
   "testflow"
