@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021. Alexander Rogalskiy. All Rights Reserved.
+ * Copyright (C) $YEAR. Alexander Rogalskiy. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  repositories {
-    mavenCentral()
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    maven("https://plugins.gradle.org/m2/")
-    gradlePluginPortal()
-    jcenter()
-  }
-}
-
-// build scan plugin can only be applied in settings file
-plugins {
-  id("com.gradle.enterprise") version "3.3.1"
-}
-
-gradleEnterprise {
-  buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-  }
-}
-
-include(
-  "appflow",
-  "testflow"
-)

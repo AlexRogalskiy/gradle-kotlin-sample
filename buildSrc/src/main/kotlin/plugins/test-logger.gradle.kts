@@ -13,29 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  repositories {
-    mavenCentral()
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    maven("https://plugins.gradle.org/m2/")
-    gradlePluginPortal()
-    jcenter()
-  }
-}
+package plugins
 
-// build scan plugin can only be applied in settings file
-plugins {
-  id("com.gradle.enterprise") version "3.3.1"
-}
+import com.adarshr.gradle.testlogger.TestLoggerPlugin
+import com.adarshr.gradle.testlogger.TestLoggerExtension
 
-gradleEnterprise {
-  buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-  }
-}
+apply<TestLoggerPlugin>()
 
-include(
-  "appflow",
-  "testflow"
-)
+configure<TestLoggerExtension> {
+  setTheme("mocha")
+  setSlowThreshold(5000)
+  setShowExceptions(true)
+  setShowStackTraces(true)
+  setShowCauses(true)
+  setShowFullStackTraces(true)
+  setShowSummary(true)
+  setShowSimpleNames(true)
+  setShowStandardStreams(true)
+  setShowPassedStandardStreams(false)
+  setShowSkippedStandardStreams(false)
+  setShowFailedStandardStreams(true)
+}

@@ -1,4 +1,22 @@
+/*
+ * Copyright (C) 2021. Alexander Rogalskiy. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import extensions.applyDefaults
+import plugins.BuildPlugins
+import tasks.BuildTasks
+import extensions.getSemanticAppVersionName
 
 repositories {
   mavenCentral()
@@ -36,15 +54,15 @@ plugins {
   id("binary-compatibility-validator")
 
   id("org.sonarqube")
-  id("jacoco")
-  id("maven")
+  //id("jacoco")
+  //id("maven")
 }
 
-configurations {
-  "implementation" {
-    resolutionStrategy.failOnVersionConflict()
-  }
-}
+//configurations {
+//  "implementation" {
+//    resolutionStrategy.failOnVersionConflict()
+//  }
+//}
 
 configure<SourceSetContainer> {
   named("main") {
@@ -127,7 +145,15 @@ buildScan {
 allprojects {
   repositories.applyDefaults()
 
-  apply(plugin = "java")
+  plugins.apply(BuildPlugins.DETEKT)
+  plugins.apply(BuildPlugins.UPDATE_DEPENDENCIES)
+  plugins.apply(BuildPlugins.KTLINT)
+  plugins.apply(BuildPlugins.GIT_HOOKS)
+  plugins.apply(BuildPlugins.SPOTLESS)
+  plugins.apply(BuildPlugins.TEST_LOGGER)
+  //plugins.apply(BuildPlugins.JACOCO)
+
+  //apply(plugin = "java")
   //apply(plugin = "com.diffplug.spotless")
   //apply(plugin = "com.adarshr.test-logger")
   //apply(plugin = "org.jlleitschuh.gradle.ktlint")
@@ -154,22 +180,26 @@ allprojects {
 //  }
 }
 
+java {
+  sourceSets {
+    map { it.java.srcDir("src/${it.name}/kotlin") }
+  }
+}
+
 subprojects {
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "kotlin-kapt")
+  apply(plugin = "java")
+
+  plugins.apply(BuildTasks.COMMON_TASKS)
 
   apply {
     from("$rootDir/versions.gradle.kts")
   }
 
   group = "io.nullables.api.sample"
-  version = "1.0.0-SNAPSHOT"
+  version = getSemanticAppVersionName()
   description = "Gradle kotlin sample project"
-
-  repositories {
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    mavenCentral()
-  }
 
   dependencies {
     // kotlin library dependencies
@@ -206,7 +236,7 @@ subprojects {
     // kotlinx library dependencies
     implementation(
       "org.jetbrains.kotlinx:kotlinx-coroutines-core:" +
-        "${Dependencies.Libs.KOTLINX_COROUTINES_VERSION}"
+        Dependencies.Libs.KOTLINX_COROUTINES_VERSION
     )
 
     // kotest library dependencies
@@ -215,7 +245,7 @@ subprojects {
     testImplementation("io.kotest:kotest-property-jvm:${Dependencies.Libs.KOTEST_VERSION}")
     testImplementation(
       "io.kotest:kotest-runner-console-jvm:" +
-        "${Dependencies.Libs.KOTEST_CONSOLE_VERSION}"
+        Dependencies.Libs.KOTEST_CONSOLE_VERSION
     )
     testImplementation("io.kotest:kotest-runner-junit5-jvm:${Dependencies.Libs.KOTEST_VERSION}")
 
@@ -225,11 +255,11 @@ subprojects {
     // junit5 library dependencies
     testImplementation(
       "io.kotlintest:kotlintest-runner-junit5:" +
-        "${Dependencies.Libs.KOTLIN_TEST_VERSION}"
+        Dependencies.Libs.KOTLIN_TEST_VERSION
     )
     testRuntimeOnly(
       "org.junit.vintage:junit-vintage-engine:" +
-        "${Dependencies.Libs.JUNIT_VINTAGE_VERSION}"
+        Dependencies.Libs.JUNIT_VINTAGE_VERSION
     )
   }
 
@@ -265,33 +295,33 @@ subprojects {
 //    }
 //  }
 
-  tasks.withType<Jar>().configureEach {
-    archiveClassifier.set("uber")
-
-    manifest {
-      // attributes["Main-Class"] = application.mainClassName
-      attributes["Class-Path"] =
-        configurations.compileClasspath.get().map {
-          it.getPath()
-        }.joinToString(" ")
-    }
-    from(sourceSets.main.get().output)
-
-    dependsOn(configurations.runtimeClasspath)
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    from({
-      exclude("META-INF/LICENSE.txt")
-      exclude("META-INF/NOTICE.txt")
-      configurations.runtimeClasspath.get().map {
-        if (it.isDirectory) {
-          it
-        } else {
-          zipTree(it)
-        }
-      }
-    })
-  }
+//  tasks.withType<Jar>().configureEach {
+//    archiveClassifier.set("uber")
+//
+//    manifest {
+//      // attributes["Main-Class"] = application.mainClassName
+//      attributes["Class-Path"] =
+//        configurations.compileClasspath.get().map {
+//          it.getPath()
+//        }.joinToString(" ")
+//    }
+//    from(sourceSets.main.get().output)
+//
+//    dependsOn(configurations.runtimeClasspath)
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//
+//    from({
+//      exclude("META-INF/LICENSE.txt")
+//      exclude("META-INF/NOTICE.txt")
+//      configurations.runtimeClasspath.get().map {
+//        if (it.isDirectory) {
+//          it
+//        } else {
+//          zipTree(it)
+//        }
+//      }
+//    })
+//  }
 
 //  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
 //    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
@@ -313,23 +343,23 @@ subprojects {
 //    this.jvmTarget = Versions.JVM_TARGET
 //  }
 
-  tasks.withType<JacocoReport> {
-    reports {
-      xml.isEnabled = true
-      html.isEnabled = true
-    }
-  }
+//  tasks.withType<JacocoReport> {
+//    reports {
+//      xml.isEnabled = true
+//      html.isEnabled = true
+//    }
+//  }
 }
 
-tasks {
-  check {
-    dependsOn(jacocoTestReport)
-  }
-}
+//tasks {
+//  check {
+//    dependsOn(jacocoTestReport)
+//  }
+//}
 
-tasks.registering(Delete::class) {
-  delete(rootProject.buildDir)
-}
+//tasks.registering(Delete::class) {
+//  delete(rootProject.buildDir)
+//}
 
 object Dependencies {
   object Plugins {

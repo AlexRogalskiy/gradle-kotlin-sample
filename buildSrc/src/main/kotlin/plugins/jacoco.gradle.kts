@@ -13,15 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package plugins
+
 plugins {
   kotlin("jvm") apply false
   jacoco apply false
 }
 
-subprojects {
-  group = "io.nullables.api.sample"
-  version = Versions.currentOrSnapshot()
-}
+//// additional source sets
+//sourceSets {
+//  val examples2 by creating {
+//    java {
+//      compileClasspath += sourceSets.main.get().output
+//      runtimeClasspath += sourceSets.main.get().output
+//    }
+//  }
+//}
 
 jacoco.toolVersion = Versions.JACOCO
 
@@ -30,6 +37,13 @@ val examplesOrTestUtils = setOf(
 )
 
 tasks {
+  withType<JacocoReport> {
+    reports {
+      xml.isEnabled = true
+      html.isEnabled = true
+    }
+  }
+
   jacocoTestReport {
     executionData.setFrom(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
 
@@ -44,5 +58,9 @@ tasks {
       xml.isEnabled = true
       xml.destination = file("$buildDir/reports/jacoco/report.xml")
     }
+  }
+
+  check {
+    dependsOn(jacocoTestReport)
   }
 }

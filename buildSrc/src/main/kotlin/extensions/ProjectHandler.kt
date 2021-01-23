@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021. Alexander Rogalskiy. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 @file:Suppress("unused")
 
 package extensions
@@ -90,22 +105,22 @@ internal inline val Project.gitSha: String
 internal fun Project.shouldTreatCompilerWarningsAsErrors() =
     shouldTreatCompilerWarningsAsErrors(this)
 
-/**
- * If the instrumented tests live in the Android Library projects, running
- * ./gradlew connectedDebugAndroidTest will run the androidTest related tasks for all the ones
- * without any android tests at all. This is for performance purpose to reduce build time.
- */
-internal inline val Project.hasAndroidTestSource: Boolean
-    get() {
-        extensions
-            .findByType(KotlinAndroidProjectExtension::class.java)
-            ?.sourceSets
-            ?.findByName("androidTest")
-            ?.let {
-                if (it.kotlin.files.isNotEmpty()) return true
-            }
-        return false
-    }
+///**
+// * If the instrumented tests live in the Android Library projects, running
+// * ./gradlew connectedDebugAndroidTest will run the androidTest related tasks for all the ones
+// * without any android tests at all. This is for performance purpose to reduce build time.
+// */
+//internal inline val Project.hasAndroidTestSource: Boolean
+//    get() {
+//        extensions
+//            .findByType(KotlinAndroidProjectExtension::class.java)
+//            ?.sourceSets
+//            ?.findByName("androidTest")
+//            ?.let {
+//                if (it.kotlin.files.isNotEmpty()) return true
+//            }
+//        return false
+//    }
 
 /**
  * Returns the requested property
@@ -116,17 +131,17 @@ internal inline val Project.hasAndroidTestSource: Boolean
  */
 fun Project.getProperty(name: String) = getProperty(name, this)
 
-/**
- * If the instrumented tests live in the Android Library projects, running
- * ./gradlew connectedDebugAndroidTest will run the androidTest related tasks for all the ones
- * without any android tests at all. This is for performance purpose to reduce build time.
- */
-fun Project.configureAndroidTests() {
-    if (!hasAndroidTestSource) {
-        project.tasks.configureEach {
-            if (name.contains("androidTest", ignoreCase = true)) {
-                enabled = false
-            }
-        }
-    }
-}
+///**
+// * If the instrumented tests live in the Android Library projects, running
+// * ./gradlew connectedDebugAndroidTest will run the androidTest related tasks for all the ones
+// * without any android tests at all. This is for performance purpose to reduce build time.
+// */
+//fun Project.configureAndroidTests() {
+//    if (!hasAndroidTestSource) {
+//        project.tasks.configureEach {
+//            if (name.contains("androidTest", ignoreCase = true)) {
+//                enabled = false
+//            }
+//        }
+//    }
+//}

@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2021. Alexander Rogalskiy. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package tasks
 
 import extensions.shouldTreatCompilerWarningsAsErrors
@@ -5,7 +20,31 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utils.javaVersion
+import utils.kotlinVersion
 import utils.parallelForks
+import extensions.getSemanticAppVersionName
+
+plugins {
+  id("org.jetbrains.kotlin.jvm") apply false
+  id("org.jetbrains.kotlin.kapt") apply false
+  id("maven") apply false
+}
+
+configurations {
+  "implementation" {
+    resolutionStrategy.failOnVersionConflict()
+  }
+}
+
+//// additional source sets
+//sourceSets {
+//  val examples by creating {
+//    java {
+//      compileClasspath += sourceSets.main.get().output
+//      runtimeClasspath += sourceSets.main.get().output
+//    }
+//  }
+//}
 
 tasks {
   withType<JavaCompile> {
@@ -26,9 +65,9 @@ tasks {
     targetCompatibility = JavaVersion.VERSION_1_8.toString()
 
     kotlinOptions {
-      jvmTarget = Versions.JVM_TARGET
-      apiVersion = Versions.API_VERSION
-      languageVersion = Versions.LANGUAGE_VERSION
+      jvmTarget = javaVersion.toString()
+      apiVersion = kotlinVersion.toString()
+      languageVersion = kotlinVersion.toString()
 
       kotlinOptions.freeCompilerArgs = listOf(
         "-progressive",
@@ -90,5 +129,37 @@ tasks {
 //      setShowSkippedStandardStreams(false)
 //      setShowFailedStandardStreams(true)
 //    }
+  }
+
+  withType<Jar> {
+    archiveClassifier.set("uber")
+
+    manifest {
+//      attributes["Class-Path"] =
+//        configurations.compileClasspath.get().map {
+//          it.getPath()
+//        }.joinToString(" ")
+      attributes["ProjectVersion"] = getSemanticAppVersionName()
+    }
+    from(sourceSets.main.get().output)
+
+    dependsOn(configurations.runtimeClasspath)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from({
+      exclude("META-INF/LICENSE.txt")
+      exclude("META-INF/NOTICE.txt")
+      configurations.runtimeClasspath.get().map {
+        if (it.isDirectory) {
+          it
+        } else {
+          zipTree(it)
+        }
+      }
+    })
+  }
+
+  registering(Delete::class) {
+    delete(rootProject.buildDir)
   }
 }
