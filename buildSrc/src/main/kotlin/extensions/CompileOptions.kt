@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 package extensions
-//
-//import com.android.build.gradle.internal.dsl.LintOptions
-//import java.io.File
-//
-///**
-// * Sets default options for lint
-// */
-//fun LintOptions.setDefaults() {
-//    isAbortOnError = false
-//    isWarningsAsErrors = true
-//    isCheckDependencies = true
-//    isIgnoreTestSources = true
-//    lintConfig = File(".lint/lint.xml")
-//    disable("OldTargetApi", "GradleDependency")
-//}
+
+import org.gradle.api.tasks.compile.CompileOptions
+
+/**
+ * Sets default options for compilation unit
+ */
+fun CompileOptions.setDefaults() {
+    isFailOnError = false
+    isDebug = false
+    isIncremental = true
+    isWarnings = true
+    isVerbose = false
+    isListFiles = false
+    isDeprecation = true
+    isFork = false
+    encoding = "UTF-8"
+}
