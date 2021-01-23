@@ -15,7 +15,7 @@
  */
 package plugins
 
-import Config
+import dependencies.Config
 import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import utils.isNonStable

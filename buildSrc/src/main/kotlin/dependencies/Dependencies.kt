@@ -110,5 +110,15 @@ object Dependencies {
         // Kotlin test dependencies
         const val kotlin_test_junit =
             "io.kotlintest:kotlintest-runner-junit5:${Versions.kotlin_test}"
+
+        // Reflections dependencies
+        const val reflections =
+            "org.reflections:reflections:${Versions.reflections}"
+
+        // Spek2 dependencies
+        const val spek2_dsl =
+            "org.spekframework.spek2:spek-dsl-jvm:${Versions.spek2}"
+        const val spek2_junit =
+            "org.spekframework.spek2:spek-runner-junit5:${Versions.spek2}"
     }
 }

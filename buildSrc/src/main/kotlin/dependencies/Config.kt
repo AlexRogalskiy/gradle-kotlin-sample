@@ -13,24 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.io.ByteArrayOutputStream
+package dependencies
 
-plugins {
-  java
-}
+object Config {
+    internal const val JSON_OUTPUT_FORMATTER = "json"
+    internal const val BUILD_STABLE_REGEX = "^[0-9,.v-]+(-r)?$"
+    internal const val KTLINT_COLOR_NAME = "RED"
+    internal const val SPOTLESS_INDENT_WITH_SPACES = 4
 
-fun Project.assertDefaultConfigUpToDate(defaultConfigFile: String = "$projectDir/config/detekt/detekt.yml") {
-  val configDiff = ByteArrayOutputStream()
+    const val JUNIT5_KEY = "runnerBuilder"
+    const val JUNIT5_VALUE = "de.mannodermaus.junit5.AndroidJUnit5Builder"
 
-  exec {
-    commandLine = listOf("git", "diff", defaultConfigFile)
-    standardOutput = configDiff
-  }
-
-  if (configDiff.toString().isNotEmpty()) {
-    throw GradleException(
-      "The default-detekt-config.yml is not up-to-date. " +
-        "You can execute the generateDocumentation Gradle task to update it and commit the changed files."
-    )
-  }
+    const val ORCHESTRATOR_KEY = "clearPackageData"
+    const val ORCHESTRATOR_VALUE = "true"
 }

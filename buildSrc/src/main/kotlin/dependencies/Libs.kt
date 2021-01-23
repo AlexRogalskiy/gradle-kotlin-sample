@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package dependencies
+
 object Libs {
     const val kotlinVersion = "1.4.21"
     const val org = "io.nullables.api.sample"

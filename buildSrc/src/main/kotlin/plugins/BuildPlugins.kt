@@ -26,4 +26,7 @@ object BuildPlugins {
     const val git_hooks = "plugins.git-hooks"
     const val test_logger = "plugins.test-logger"
     const val jacoco = "plugins.jacoco"
+    const val kotlin_sources = "plugins.generated-kotlin-sources"
+    const val github_releasing = "plugins.releasing"
+    const val nexus_packaging = "plugins.packaging"
 }

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import extensions.applyDefaults
+import dependencies.Dependencies
 import plugins.BuildPlugins
 import tasks.BuildTasks
+import extensions.applyDefaults
 import extensions.getProjectGroup
 import extensions.getProjectVersion
 import extensions.getProjectDescription
-import dependencies.Dependencies
 
 repositories {
   mavenCentral()
@@ -64,6 +64,7 @@ allprojects {
   plugins.apply(BuildPlugins.git_hooks)
   plugins.apply(BuildPlugins.spotless)
   plugins.apply(BuildPlugins.test_logger)
+  plugins.apply(BuildPlugins.kotlin_sources)
   // plugins.apply(BuildPlugins.jacoco)
 }
 
@@ -84,7 +85,7 @@ subprojects {
     // kotlin library dependencies
     // kotlin(module = "jvm", version = "1.4.71")
     // implementation(kotlin("stdlib"))
-    kapt(Dependencies.Core.kotlin_stdlib)
+    implementation(Dependencies.Core.kotlin_stdlib)
 
     // annotation processors
     kapt(Dependencies.Core.arrow_meta)
@@ -130,11 +131,21 @@ subprojects {
     // fake data test library dependencies
     testImplementation(Dependencies.Test.kotlin_faker)
 
+    // mockk test library dependencies
+    testImplementation(Dependencies.Test.mockk)
+
+    // reflections test library dependencies
+    testImplementation(Dependencies.Test.reflections)
+
     // kotlin test library dependencies
     testImplementation(Dependencies.Test.kotlin_test_junit)
 
     // kotlinx test library dependencies
     implementation(Dependencies.Test.kotlinx_coroutines_test)
+
+    // spek2 test library dependencies
+    implementation(Dependencies.Test.spek2_dsl)
+    implementation(Dependencies.Test.spek2_junit)
 
     // junit5 test library dependencies
     testRuntimeOnly(Dependencies.Test.junit_runner)

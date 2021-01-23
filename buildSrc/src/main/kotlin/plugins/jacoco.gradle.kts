@@ -15,6 +15,8 @@
  */
 package plugins
 
+import dependencies.Versions
+
 plugins {
   kotlin("jvm") apply false
   jacoco apply false

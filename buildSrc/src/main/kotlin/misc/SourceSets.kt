@@ -13,6 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package misc/*
+ * Copyright (C) 2021. Alexander Rogalskiy. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
@@ -52,10 +67,10 @@ private interface SourceSetCreator {
 }
 
 ///**
-// * A [SourceSetCreator] implementation to create main Kotlin [SourceSet]
+// * A [misc.SourceSetCreator] implementation to create main Kotlin [SourceSet]
 // */
-//internal object Main : SourceSetCreator {
-//    override val name = InternalSourceSet.MAIN
+//internal object Main : misc.SourceSetCreator {
+//    override val name = misc.InternalSourceSet.MAIN
 //
 //    override fun create(
 //        namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>,
@@ -68,10 +83,10 @@ private interface SourceSetCreator {
 //}
 //
 ///**
-// * A [SourceSetCreator] implementation to create test Kotlin [SourceSet]
+// * A [misc.SourceSetCreator] implementation to create test Kotlin [SourceSet]
 // */
-//internal object Test : SourceSetCreator {
-//    override val name = InternalSourceSet.TEST
+//internal object Test : misc.SourceSetCreator {
+//    override val name = misc.InternalSourceSet.TEST
 //
 //    override fun create(
 //        namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>,
@@ -85,10 +100,10 @@ private interface SourceSetCreator {
 //}
 //
 ///**
-// * A [SourceSetCreator] implementation to create android test Kotlin [SourceSet]
+// * A [misc.SourceSetCreator] implementation to create android test Kotlin [SourceSet]
 // */
-//internal object AndroidTest : SourceSetCreator {
-//    override val name = InternalSourceSet.ANDROID_TEST
+//internal object AndroidTest : misc.SourceSetCreator {
+//    override val name = misc.InternalSourceSet.ANDROID_TEST
 //
 //    override fun create(
 //        namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>,

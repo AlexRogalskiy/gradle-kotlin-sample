@@ -15,8 +15,10 @@
  */
 package utils
 
+import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import java.io.ByteArrayOutputStream
 import java.util.*
 
 /**
@@ -50,4 +52,20 @@ internal fun shouldTreatCompilerWarningsAsErrors(project: Project): Boolean {
 fun isLinuxOrMacOs(): Boolean {
     val osName = System.getProperty("os.name").toLowerCase(Locale.ROOT)
     return listOf("linux", "mac os", "macos").contains(osName)
+}
+
+fun Project.assertDefaultConfigUpToDate(defaultConfigFile: String = "$projectDir/config/detekt/detekt.yml") {
+    val configDiff = ByteArrayOutputStream()
+
+    exec {
+        commandLine = listOf("git", "diff", defaultConfigFile)
+        standardOutput = configDiff
+    }
+
+    if (configDiff.toString().isNotEmpty()) {
+        throw GradleException(
+            "The default-detekt-config.yml is not up-to-date. " +
+                "You can execute the generateDocumentation Gradle task to update it and commit the changed files."
+        )
+    }
 }

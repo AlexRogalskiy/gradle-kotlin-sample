@@ -13,6 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package plugins
+
+import dependencies.Ci
+import dependencies.Constants
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
@@ -20,15 +24,11 @@ import org.gradle.kotlin.dsl.*
 import org.gradle.plugins.signing.SigningExtension
 
 plugins {
-  java
+  java apply false
   `java-library` apply false
   `maven-publish` apply false
   signing apply false
-  id("io.codearte.nexus-staging")
-}
-
-repositories {
-  mavenCentral()
+  id("io.codearte.nexus-staging") apply false
 }
 
 val signingKey: String? by project

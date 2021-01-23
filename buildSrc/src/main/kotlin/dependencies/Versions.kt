@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package dependencies
+
 object Versions {
     // core
     const val kotlin = "1.4.21"
@@ -38,6 +40,8 @@ object Versions {
     const val kotlinx = "1.4.2"
     const val klaxon = "5.4"
     const val clikt = "2.6.0"
+    const val reflections = "0.9.12"
+    const val spek2 = "2.0.9"
 
     // project
     const val project: String = "1.0.0"

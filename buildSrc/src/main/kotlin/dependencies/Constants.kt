@@ -13,20 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-object Ci {
-    // this is the version used for building snapshots
-    // .GITHUB_RUN_NUMBER-snapshot will be appended
-    private const val snapshotBase = "1.4.0"
+package dependencies
 
-    private val githubRunNumber = System.getenv("GITHUB_RUN_NUMBER")
-
-    private val snapshotVersion = when (githubRunNumber) {
-        null -> "$snapshotBase-LOCAL"
-        else -> "$snapshotBase.${githubRunNumber}-SNAPSHOT"
-    }
-
-    private val releaseVersion = System.getenv("RELEASE_VERSION")
-
-    val isRelease = releaseVersion != null
-    val version = releaseVersion ?: snapshotVersion
+object Constants {
+    const val DETEKT_PUBLICATION = "DetektPublication"
 }

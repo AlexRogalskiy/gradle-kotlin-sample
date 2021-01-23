@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-object Constants {
-    const val DETEKT_PUBLICATION = "DetektPublication"
+package dependencies
+
+object Modules {
+    const val appflow = "appflow"
+    const val testflow = "testflow"
 }

@@ -15,7 +15,7 @@
  */
 package utils
 
-import Config
+import dependencies.Config
 import java.util.*
 
 /**
