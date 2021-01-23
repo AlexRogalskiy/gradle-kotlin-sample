@@ -13,12 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-val compileSdkVersion: String by project
 val minSdkVersion: String by project
-val targetSdkVersion: String by project
 
 extra.apply {
-  this["compileSdkVersion"] = compileSdkVersion.toInt()
   this["minSdkVersion"] = minSdkVersion.toInt()
-  this["targetSdkVersion"] = targetSdkVersion.toInt()
 }

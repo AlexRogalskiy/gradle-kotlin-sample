@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import dependencies.Dependencies
+import constants.Dependencies
 import plugins.BuildPlugins
 import tasks.BuildTasks
 import extensions.applyDefaults

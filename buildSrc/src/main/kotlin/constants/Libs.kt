@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dependencies
+package constants
 
 object Libs {
     const val kotlinVersion = "1.4.21"

@@ -15,7 +15,7 @@
  */
 package plugins
 
-import dependencies.Versions
+import constants.Versions
 
 plugins {
   kotlin("jvm") apply false

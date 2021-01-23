@@ -15,7 +15,7 @@
  */
 package plugins
 
-import dependencies.Versions
+import constants.Versions
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.detekt

@@ -15,8 +15,8 @@
  */
 package plugins
 
-import dependencies.Config
-import dependencies.Versions
+import constants.Config
+import constants.Versions
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType

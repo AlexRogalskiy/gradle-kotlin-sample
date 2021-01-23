@@ -15,8 +15,8 @@
  */
 package plugins
 
-import dependencies.Ci
-import dependencies.Constants
+import constants.Ci
+import constants.Constants
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension

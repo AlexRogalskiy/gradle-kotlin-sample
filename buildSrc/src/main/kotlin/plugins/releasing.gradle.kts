@@ -18,7 +18,7 @@ package plugins
 import misc.UpdateVersionInFileTask
 import com.github.breadmoirai.githubreleaseplugin.GithubReleaseTask
 import com.vdurmont.semver4j.Semver
-import dependencies.Versions
+import constants.Versions
 
 plugins {
   id("com.github.breadmoirai.github-release") apply false

@@ -15,7 +15,7 @@
  */
 package common
 
-import dependencies.Dependencies
+import constants.Dependencies
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
