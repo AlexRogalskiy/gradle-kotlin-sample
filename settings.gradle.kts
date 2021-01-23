@@ -1,9 +1,5 @@
 rootProject.name = "gradle-kotlin-sample"
-
-include(
-  "appflow",
-  "testflow"
-)
+rootProject.buildFileName = "build.gradle.kts"
 
 pluginManagement {
   repositories {
@@ -19,3 +15,15 @@ pluginManagement {
 plugins {
   id("com.gradle.enterprise") version "3.3.1"
 }
+
+gradleEnterprise {
+  buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
+  }
+}
+
+include(
+  "appflow",
+  "testflow"
+)

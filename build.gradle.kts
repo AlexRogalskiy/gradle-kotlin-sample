@@ -1,3 +1,5 @@
+import extensions.applyDefaults
+
 repositories {
   mavenCentral()
   mavenLocal()
@@ -95,7 +97,7 @@ detekt {
   disableDefaultRuleSets = false
 
   toolVersion = Dependencies.Libs.DETEKT_VERSION
-  input = files("src/main/kotlin", "src/test/kotlin")
+  input = files("src/main/kotlin", "src/test/kotlin", "src/main/java", "src/test/java")
 
   config =
     files("${rootProject.rootDir}/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
@@ -105,24 +107,26 @@ detekt {
   reports {
     xml {
       enabled = true
-      destination = file("$buildDir/reports/build.xml")
+      destination = file("$buildDir/reports/detekt-report.xml")
     }
     html {
       enabled = true
-      destination = file("$buildDir/reports/build.html")
+      destination = file("$buildDir/reports/detekt-report.html")
     }
     txt {
       enabled = true
-      destination = file("$buildDir/reports/build.txt")
+      destination = file("$buildDir/reports/detekt-report.txt")
     }
     sarif {
       enabled = true
-      destination = file("$$buildDir/reports/detekt.sarif")
+      destination = file("$$buildDir/reports/detekt-report.sarif")
     }
   }
 }
 
 allprojects {
+  repositories.applyDefaults()
+
   apply(plugin = "java")
   apply(plugin = "com.diffplug.spotless")
   apply(plugin = "com.adarshr.test-logger")
@@ -153,6 +157,10 @@ allprojects {
 subprojects {
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "kotlin-kapt")
+
+  apply {
+    from("$rootDir/versions.gradle.kts")
+  }
 
   group = "io.nullables.api.sample"
   version = "1.0.0-SNAPSHOT"
@@ -299,6 +307,8 @@ subprojects {
   }
 
   tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
+    include("**/*.kt", "**/*.kts")
+    exclude("**/build/**", ".*/resources/.*", ".*test.*,.*/resources/.*,.*/tmp/.*")
     // Target version of the generated JVM bytecode. It is used for type resolution.
     this.jvmTarget = Versions.JVM_TARGET
   }
@@ -315,6 +325,10 @@ tasks {
   check {
     dependsOn(jacocoTestReport)
   }
+}
+
+tasks.registering(Delete::class) {
+  delete(rootProject.buildDir)
 }
 
 object Dependencies {
