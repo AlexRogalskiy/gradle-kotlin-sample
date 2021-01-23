@@ -28,9 +28,9 @@ plugins {
 
   id("org.jetbrains.dokka") apply false
   id("com.github.johnrengelman.shadow") apply false
-  id("com.diffplug.spotless") version "5.9.0"
-  id("com.adarshr.test-logger") version "2.1.1"
-  id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
+  //id("com.diffplug.spotless") version "5.9.0"
+  //id("com.adarshr.test-logger") version "2.1.1"
+  //id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
   id("com.github.ben-manes.versions")
   id("io.gitlab.arturbosch.detekt")
   id("binary-compatibility-validator")
@@ -88,70 +88,70 @@ buildScan {
   termsOfServiceAgree = "yes"
 }
 
-detekt {
-  debug = false
-  failFast = true
-  parallel = true
-  ignoreFailures = false
-  buildUponDefaultConfig = true
-  disableDefaultRuleSets = false
-
-  toolVersion = Dependencies.Libs.DETEKT_VERSION
-  input = files("src/main/kotlin", "src/test/kotlin", "src/main/java", "src/test/java")
-
-  config =
-    files("${rootProject.rootDir}/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
-  baseline =
-    file("${rootProject.rootDir}/config/baseline.xml") // a way of suppressing issues before introducing detekt
-
-  reports {
-    xml {
-      enabled = true
-      destination = file("$buildDir/reports/detekt-report.xml")
-    }
-    html {
-      enabled = true
-      destination = file("$buildDir/reports/detekt-report.html")
-    }
-    txt {
-      enabled = true
-      destination = file("$buildDir/reports/detekt-report.txt")
-    }
-    sarif {
-      enabled = true
-      destination = file("$$buildDir/reports/detekt-report.sarif")
-    }
-  }
-}
+//detekt {
+//  debug = false
+//  failFast = true
+//  parallel = true
+//  ignoreFailures = false
+//  buildUponDefaultConfig = true
+//  disableDefaultRuleSets = false
+//
+//  toolVersion = Dependencies.Libs.DETEKT_VERSION
+//  input = files("src/main/kotlin", "src/test/kotlin", "src/main/java", "src/test/java")
+//
+//  config =
+//    files("${rootProject.rootDir}/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
+//  baseline =
+//    file("${rootProject.rootDir}/config/baseline.xml") // a way of suppressing issues before introducing detekt
+//
+//  reports {
+//    xml {
+//      enabled = true
+//      destination = file("$buildDir/reports/detekt-report.xml")
+//    }
+//    html {
+//      enabled = true
+//      destination = file("$buildDir/reports/detekt-report.html")
+//    }
+//    txt {
+//      enabled = true
+//      destination = file("$buildDir/reports/detekt-report.txt")
+//    }
+//    sarif {
+//      enabled = true
+//      destination = file("$$buildDir/reports/detekt-report.sarif")
+//    }
+//  }
+//}
 
 allprojects {
   repositories.applyDefaults()
 
   apply(plugin = "java")
-  apply(plugin = "com.diffplug.spotless")
-  apply(plugin = "com.adarshr.test-logger")
-  apply(plugin = "org.jlleitschuh.gradle.ktlint")
+  //apply(plugin = "com.diffplug.spotless")
+  //apply(plugin = "com.adarshr.test-logger")
+  //apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
-  spotless {
-    kotlin {
-      ktlint()
-    }
+//  spotless {
+//    kotlin {
+//      ktlint()
+//    }
 //    kotlinGradle {
 //      ktlint()
 //    }
-  }
+//  }
 
-  testlogger {
-    setTheme("mocha")
-    setSlowThreshold(5000)
-  }
+//  testlogger {
+//    setTheme("mocha")
+//    setSlowThreshold(5000)
+//  }
 
-  ktlint {
-    // debug.set(true)
-    // verbose.set(true)
-    version.set(Versions.KTLINT)
-    enableExperimentalRules.set(true)
-  }
+//  ktlint {
+//    // debug.set(true)
+//    // verbose.set(true)
+//    version.set(Versions.KTLINT)
+//    enableExperimentalRules.set(true)
+//  }
 }
 
 subprojects {
@@ -233,37 +233,37 @@ subprojects {
     )
   }
 
-  tasks.named<Test>("test") {
-    useJUnitPlatform()
+//  tasks.named<Test>("test") {
+//    useJUnitPlatform()
 
-    testlogger {
-      setTheme("standard-parallel")
-      setShowExceptions(true)
-      setShowStackTraces(true)
-      setShowCauses(true)
-      setShowFullStackTraces(true)
-      setShowSummary(true)
-      setShowSimpleNames(true)
-      setShowStandardStreams(true)
-      setShowPassedStandardStreams(false)
-      setShowSkippedStandardStreams(false)
-      setShowFailedStandardStreams(true)
-    }
+//    testlogger {
+//      setTheme("standard-parallel")
+//      setShowExceptions(true)
+//      setShowStackTraces(true)
+//      setShowCauses(true)
+//      setShowFullStackTraces(true)
+//      setShowSummary(true)
+//      setShowSimpleNames(true)
+//      setShowStandardStreams(true)
+//      setShowPassedStandardStreams(false)
+//      setShowSkippedStandardStreams(false)
+//      setShowFailedStandardStreams(true)
+//    }
 
-    filter {
-      isFailOnNoMatchingTests = false
-    }
+//    filter {
+//      isFailOnNoMatchingTests = false
+//    }
 
-    testLogging {
-      showExceptions = true
-      showStandardStreams = true
-      exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-      events = setOf(
-        org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
-        org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
-      )
-    }
-  }
+//    testLogging {
+//      showExceptions = true
+//      showStandardStreams = true
+//      exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+//      events = setOf(
+//        org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
+//        org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+//      )
+//    }
+//  }
 
   tasks.withType<Jar>().configureEach {
     archiveClassifier.set("uber")
@@ -293,25 +293,25 @@ subprojects {
     })
   }
 
-  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+//  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+//    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+//    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+//
+//    kotlinOptions {
+//      jvmTarget = Versions.JVM_TARGET
+//      apiVersion = Versions.API_VERSION
+//      languageVersion = Versions.LANGUAGE_VERSION
+//      freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+//      freeCompilerArgs += "-Xuse-experimental=kotlin.Experimental"
+//    }
+//  }
 
-    kotlinOptions {
-      jvmTarget = Versions.JVM_TARGET
-      apiVersion = Versions.API_VERSION
-      languageVersion = Versions.LANGUAGE_VERSION
-      freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-      freeCompilerArgs += "-Xuse-experimental=kotlin.Experimental"
-    }
-  }
-
-  tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-    include("**/*.kt", "**/*.kts")
-    exclude("**/build/**", ".*/resources/.*", ".*test.*,.*/resources/.*,.*/tmp/.*")
-    // Target version of the generated JVM bytecode. It is used for type resolution.
-    this.jvmTarget = Versions.JVM_TARGET
-  }
+//  tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
+//    include("**/*.kt", "**/*.kts")
+//    exclude("**/build/**", ".*/resources/.*", ".*test.*,.*/resources/.*,.*/tmp/.*")
+//    // Target version of the generated JVM bytecode. It is used for type resolution.
+//    this.jvmTarget = Versions.JVM_TARGET
+//  }
 
   tasks.withType<JacocoReport> {
     reports {
@@ -338,7 +338,6 @@ object Dependencies {
 
   object Libs {
     const val RXJAVA_VERSION = "2.2.20"
-    const val DETEKT_VERSION = "1.15.0"
     const val ARROW_VERSION = "0.11.0"
     const val LOGBACK_VERSION = "1.2.3"
     const val KLAXON_VERSION = "5.4"

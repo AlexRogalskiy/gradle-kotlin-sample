@@ -1,6 +1,6 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+//import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   kotlin("jvm")
@@ -26,41 +26,41 @@ tasks.withType<Jar>().configureEach {
 
 jacoco.toolVersion = Versions.JACOCO
 
-tasks.withType<Test>().configureEach {
-  useJUnitPlatform()
-  systemProperty("spek2.jvm.cg.scan.concurrency", 1) // use one thread for classpath scanning
-  systemProperty("spek2.execution.test.timeout", 0) // disable test timeout
-  systemProperty("spek2.discovery.parallel.enabled", 0) // disable parallel test discovery
-  val compileSnippetText: Boolean = if (project.hasProperty("compile-test-snippets")) {
-    (project.property("compile-test-snippets") as String).toBoolean()
-  } else {
-    false
-  }
-  systemProperty("compile-snippet-tests", compileSnippetText)
-  testLogging {
-    // set options for log level LIFECYCLE
-    events = setOf(
-      TestLogEvent.FAILED,
-      TestLogEvent.STANDARD_ERROR,
-      TestLogEvent.STANDARD_OUT,
-      TestLogEvent.SKIPPED
-    )
-    exceptionFormat = TestExceptionFormat.FULL
-    showExceptions = true
-    showCauses = true
-    showStackTraces = true
-  }
-}
+//tasks.withType<Test>().configureEach {
+//  useJUnitPlatform()
+//  systemProperty("spek2.jvm.cg.scan.concurrency", 1) // use one thread for classpath scanning
+//  systemProperty("spek2.execution.test.timeout", 0) // disable test timeout
+//  systemProperty("spek2.discovery.parallel.enabled", 0) // disable parallel test discovery
+//  val compileSnippetText: Boolean = if (project.hasProperty("compile-test-snippets")) {
+//    (project.property("compile-test-snippets") as String).toBoolean()
+//  } else {
+//    false
+//  }
+//  systemProperty("compile-snippet-tests", compileSnippetText)
+//  testLogging {
+//    // set options for log level LIFECYCLE
+//    events = setOf(
+//      TestLogEvent.FAILED,
+//      TestLogEvent.STANDARD_ERROR,
+//      TestLogEvent.STANDARD_OUT,
+//      TestLogEvent.SKIPPED
+//    )
+//    exceptionFormat = TestExceptionFormat.FULL
+//    showExceptions = true
+//    showCauses = true
+//    showStackTraces = true
+//  }
+//}
 
-tasks.withType<KotlinCompile>().configureEach {
-  kotlinOptions.jvmTarget = Versions.JVM_TARGET
-  kotlinOptions.freeCompilerArgs = listOf(
-    "-progressive",
-    "-Xopt-in=kotlin.RequiresOptIn"
-  )
-  // Usage: <code>./gradlew build -PwarningsAsErrors=true</code>.
-  kotlinOptions.allWarningsAsErrors = project.findProperty("warningsAsErrors") == "true"
-}
+//tasks.withType<KotlinCompile>().configureEach {
+//  kotlinOptions.jvmTarget = Versions.JVM_TARGET
+//  kotlinOptions.freeCompilerArgs = listOf(
+//    "-progressive",
+//    "-Xopt-in=kotlin.RequiresOptIn"
+//  )
+//  // Usage: <code>./gradlew build -PwarningsAsErrors=true</code>.
+//  kotlinOptions.allWarningsAsErrors = project.findProperty("warningsAsErrors") == "true"
+//}
 
 dependencies {
   compileOnly(kotlin("stdlib-jdk8"))

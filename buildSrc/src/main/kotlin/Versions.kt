@@ -1,4 +1,6 @@
 object Versions {
+    const val DETEKT_VERSION = "1.15.0"
+
     const val PROJECT_VERSION: String = "1.0.0"
     const val JVM_TARGET: String = "1.8"
     const val API_VERSION: String = "1.4"
