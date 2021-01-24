@@ -1,0 +1,46 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  - openjdk8
+
+env:
+  global:
+    - CODECOV_ENABLED=false
+    - GRADLE_OPTS="-XX:MaxPermSize=256m -Xmx1G"
+    - JAVA_OPTS="-XX:MaxPermSize=256m -Xmx1G"
+
+sudo: required
+
+before_install:
+  - chmod +x gradlew
+
+before_script:
+  - ${JAVA_HOME}/bin/java -version
+  - ./gradlew --version
+
+script:
+  - ./gradlew clean build -i --continue
+
+after_success:
+  - if [ -n "$CODECOV_ENABLED" ]; then bash <(curl -s --retry 5 --retry-delay 2 --connect-timeout 2 https://codecov.io/bash) -t $CODECOV_TOKEN; fi
+
+after_failure:
+  - cat hs_err*
+  - sudo free -m -t
+  - sudo dmesg
+
+notifications:
+  email:
+    recipients:
+      - test@gmail.com
+    on_success: change
+    on_failure: always
+
+before_cache:
+  - rm -rf $HOME/.gradle/repository/
+
+cache:
+  directories:
+    - "$HOME/.gradle/repository"
+    - "$HOME/.gradle/wrapper/"

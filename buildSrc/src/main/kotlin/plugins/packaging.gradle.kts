@@ -110,7 +110,7 @@ subprojects {
           developer {
             id.set("AlexRogalskiy")
             name.set("Alexander Rogalskiy")
-            email.set("alexander.rogalsky@yandex.ru")
+            email.set("test@gmail.com")
           }
         }
 
