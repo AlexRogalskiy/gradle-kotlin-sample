@@ -55,6 +55,7 @@ Give an example
 ## Development
 
 [![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/AlexRogalskiy/gradle-kotlin-sample)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fgradle-kotlin-sample.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fgradle-kotlin-sample?ref=badge_shield)
 
 _Gradle-kotlin-sample_ has experimental support for Gitpod, a pre-configured development environment that runs in your browser. To use Gitpod, click the button below and sign in with GitHub. Gitpod also offers a browser add-on, though it is not required.
 
@@ -85,6 +86,9 @@ See also the list of [contributors](https://github.com/your/project/contributors
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fgradle-kotlin-sample.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FAlexRogalskiy%2Fgradle-kotlin-sample?ref=badge_large)
 
 ## Acknowledgments
 
