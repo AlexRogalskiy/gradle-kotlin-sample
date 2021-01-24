@@ -184,21 +184,24 @@ tasks {
 
   withType<Jar> {
     archiveClassifier.set("uber")
+    dependsOn(configurations.runtimeClasspath)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     manifest {
 //      attributes["Class-Path"] =
-//        configurations.compileClasspath.get().map {
-//          it.getPath()
-//        }.joinToString(" ")
+//        configurations.compileClasspath.get()
+//          .asSequence()
+//          .filterNot { "org.jetbrains" in it.toString() }
+//          .filterNot { "org.intellij" in it.toString() }
+//          .map { if (it.isDirectory) it else zipTree(it) }
+//          .toList()
+//          .joinToString(" ")
       attributes["Project-Version"] = getProjectVersion()
       attributes["Project-Group"] = getProjectGroup()
       attributes["Project-Description"] = getProjectDescription()
     }
+
     from(sourceSets.main.get().output)
-
-    dependsOn(configurations.runtimeClasspath)
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
     from({
       exclude("META-INF/LICENSE.txt")
       exclude("META-INF/NOTICE.txt")
