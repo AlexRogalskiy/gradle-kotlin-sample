@@ -20,6 +20,7 @@ import extensions.applyDefaults
 import extensions.getProjectGroup
 import extensions.getProjectVersion
 import extensions.getProjectDescription
+import common.addJUnit5TestDependencies
 
 repositories {
   mavenCentral()
@@ -148,12 +149,12 @@ subprojects {
     implementation(Dependencies.Test.spek2_junit)
 
     // junit5 test library dependencies
-    testRuntimeOnly(Dependencies.Test.junit_runner)
-    testRuntimeOnly(Dependencies.Test.junit_launcher)
-    testRuntimeOnly(Dependencies.Test.junit_api)
-    testRuntimeOnly(Dependencies.Test.junit_engine)
-    testRuntimeOnly(Dependencies.Test.junit_params)
-    testRuntimeOnly(Dependencies.Test.junit_vintage)
-    // addJUnit5TestDependencies()
+    addJUnit5TestDependencies()
+//    testRuntimeOnly(Dependencies.Test.junit_runner)
+//    testRuntimeOnly(Dependencies.Test.junit_launcher)
+//    testRuntimeOnly(Dependencies.Test.junit_api)
+//    testRuntimeOnly(Dependencies.Test.junit_engine)
+//    testRuntimeOnly(Dependencies.Test.junit_params)
+//    testRuntimeOnly(Dependencies.Test.junit_vintage)
   }
 }
