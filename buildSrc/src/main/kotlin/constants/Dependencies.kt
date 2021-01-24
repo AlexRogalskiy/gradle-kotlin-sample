@@ -19,7 +19,8 @@ object Dependencies {
 
     object Core {
         // Kotlin dependencies
-        const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+        const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val kotlin_stdlib_jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
 
         // Kotlinx dependencies
         const val kotlinx_coroutines =
@@ -67,6 +68,9 @@ object Dependencies {
     }
 
     object Test {
+        // Kotlin dependencies
+        const val kotlin_test = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
+
         // Mock dependencies
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
 

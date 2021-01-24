@@ -87,6 +87,7 @@ subprojects {
     // kotlin(module = "jvm", version = "1.4.71")
     // implementation(kotlin("stdlib"))
     implementation(Dependencies.Core.kotlin_stdlib)
+    implementation(Dependencies.Core.kotlin_stdlib_jdk8)
 
     // annotation processors
     kapt(Dependencies.Core.arrow_meta)
@@ -121,6 +122,9 @@ subprojects {
     // kotlinx library dependencies
     implementation(Dependencies.Core.kotlinx_coroutines)
     implementation(Dependencies.Core.kotlinx_serialization)
+
+    // kotlin test library dependencies
+    testImplementation(Dependencies.Test.kotlin_test)
 
     // kotest library dependencies
     testImplementation(Dependencies.Test.kotest_assertions_arrow)
