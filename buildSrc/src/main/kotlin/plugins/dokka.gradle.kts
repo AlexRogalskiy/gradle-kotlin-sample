@@ -13,31 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  repositories {
-    maven("https://dl.bintray.com/kotlin/kotlin-eap/")
-    maven("https://dl.bintray.com/kotlin/kotlin-dev/")
-    maven("https://plugins.gradle.org/m2/")
-    mavenCentral()
-    jcenter()
-    gradlePluginPortal()
+package plugins
+
+import org.jetbrains.dokka.gradle.DokkaPlugin
+import org.jetbrains.dokka.gradle.DokkaTask
+import utils.javaVersion
+
+apply<DokkaPlugin>()
+
+tasks {
+  withType<DokkaTask> {
+    // custom output directory
+    outputDirectory.set(buildDir.resolve("dokka"))
+    // Set module name displayed in the final output
+    moduleName.set("moduleName")
+    // Use default or set to custom path to cache directory
+    // to enable package-list caching
+    // When this is set to default, caches are stored in $USER_HOME/.cache/dokka
+    cacheRoot.set(file("default"))
   }
 }
-
-// build scan plugin can only be applied in settings file
-plugins {
-  @Suppress("UnstableApiUsage")
-  `gradle-enterprise`
-}
-
-gradleEnterprise {
-  buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-  }
-}
-
-include(
-  "appflow",
-  "testflow"
-)

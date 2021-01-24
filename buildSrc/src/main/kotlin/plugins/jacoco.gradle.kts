@@ -32,7 +32,9 @@ plugins {
 //  }
 //}
 
-jacoco.toolVersion = Versions.jacoco
+jacoco {
+  toolVersion = Versions.jacoco
+}
 
 val examplesOrTestUtils = setOf(
   "testflow"

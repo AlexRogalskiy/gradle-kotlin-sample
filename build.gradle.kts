@@ -66,6 +66,7 @@ allprojects {
   plugins.apply(BuildPlugins.spotless)
   plugins.apply(BuildPlugins.test_logger)
   plugins.apply(BuildPlugins.kotlin_sources)
+  plugins.apply(BuildPlugins.dokka)
   // plugins.apply(BuildPlugins.jacoco)
 }
 
