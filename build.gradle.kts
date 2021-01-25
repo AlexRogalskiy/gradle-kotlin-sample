@@ -78,7 +78,9 @@ subprojects {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // kotlin library dependencies
+    implementation(Dependencies.Core.kotlin_reflect)
     implementation(Dependencies.Core.kotlin_stdlib)
+    implementation(Dependencies.Core.kotlin_stdlib_common)
     implementation(Dependencies.Core.kotlin_stdlib_jdk8)
 
     // annotation processors
@@ -117,6 +119,8 @@ subprojects {
 
     // kotlin test library dependencies
     testImplementation(Dependencies.Test.kotlin_test)
+    testImplementation(Dependencies.Test.kotlin_test_common)
+    testImplementation(Dependencies.Test.kotlin_test_annotations_common)
 
     // kotest library dependencies
     testImplementation(Dependencies.Test.kotest_assertions_arrow)

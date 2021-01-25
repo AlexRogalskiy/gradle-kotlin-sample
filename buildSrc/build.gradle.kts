@@ -61,7 +61,7 @@ dependencies {
 }
 
 object PluginVersions {
-  const val kotlin = "1.4.21"
+  const val kotlin = "1.4.30-RC"
   const val detekt = "1.15.0"
   const val github_release = "2.2.12"
   const val oss_license = "0.10.2"

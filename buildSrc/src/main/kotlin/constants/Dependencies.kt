@@ -20,6 +20,9 @@ object Dependencies {
     object Core {
         // Kotlin dependencies
         const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val kotlin_stdlib_common =
+            "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
+        const val kotlin_reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
         const val kotlin_stdlib_jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
 
         // Kotlinx dependencies
@@ -70,6 +73,9 @@ object Dependencies {
     object Test {
         // Kotlin dependencies
         const val kotlin_test = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
+        const val kotlin_test_common = "org.jetbrains.kotlin:kotlin-test-common:${Versions.kotlin}"
+        const val kotlin_test_annotations_common =
+            "org.jetbrains.kotlin:kotlin-test-annotations-common:${Versions.kotlin}"
 
         // Mock dependencies
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
@@ -95,7 +101,7 @@ object Dependencies {
         const val kotlinx_coroutines_test =
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlin_coroutines}"
 
-        // Kotest dependencies
+        // Kotest test dependencies
         const val kotest_assertions_arrow =
             "io.kotest:kotest-assertions-arrow-jvm:${Versions.kotest_junit}"
         const val kotest_assertions_core =
@@ -107,19 +113,19 @@ object Dependencies {
         const val kotest_junit =
             "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest_junit}"
 
-        // Kotlin faker dependencies
+        // Kotlin faker test dependencies
         const val kotlin_faker =
             "io.github.serpro69:kotlin-faker:${Versions.kotlin_faker}"
 
-        // Kotlin test dependencies
+        // Kotlin junit5 test dependencies
         const val kotlin_test_junit =
             "io.kotlintest:kotlintest-runner-junit5:${Versions.kotlin_test}"
 
-        // Reflections dependencies
+        // reflections test dependencies
         const val reflections =
             "org.reflections:reflections:${Versions.reflections}"
 
-        // Spek2 dependencies
+        // spek2 test dependencies
         const val spek2_dsl =
             "org.spekframework.spek2:spek-dsl-jvm:${Versions.spek2}"
         const val spek2_junit =

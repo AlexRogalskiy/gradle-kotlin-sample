@@ -106,7 +106,8 @@ configure<SpotlessExtension> {
             "**/build/**",
             "**/spotless/*.java",
             "**/spotless/*.kt",
-            "**/automodule/**"
+            "**/automodule/**",
+            "**/api/**"
           )
         )
       )
