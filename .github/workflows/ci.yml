@@ -11,6 +11,12 @@ on:
 
 env:
   CI: true
+  LANG: "en_US.UTF-8"
+  LC_MESSAGES: "en_US.UTF-8"
+  LC_ALL: "en_US.UTF-8"
+  LANGUAGE: "en_US:en"
+  GRADLE_OPTS: >-
+    -Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false
 
 jobs:
   setup:
