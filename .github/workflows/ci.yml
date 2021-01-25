@@ -36,6 +36,9 @@ jobs:
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
+      - name: Chmod permissions
+        run: sudo chmod +x ./gradlew
+
       - name: Check Dependency Updates
         run: ./gradlew dependencyUpdates -Drevision=release
 
@@ -59,6 +62,9 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('checksum.txt') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
+      - name: Chmod permissions
+        run: sudo chmod +x ./gradlew
 
       - name: Run Ktlint
         run: ./gradlew ktlintCheck
