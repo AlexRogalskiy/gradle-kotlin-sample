@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-object Plugins {
-    const val kotlinJvm = "org.jetbrains.kotlin.jvm"
-    const val kotlinKapt = "org.jetbrains.kotlin.kapt"
-    const val shadow = "com.github.johnrengelman.shadow"
-    const val versions = "com.github.ben-manes.versions"
-    const val compatValidator = "binary-compatibility-validator"
-    const val sonarQube = "org.sonarqube"
+package plugins
+
+plugins {
+  id("com.github.blueboxware.tocme") apply false
+}
+
+tocme {
+  bold = false
+  doc(file("$rootDir/README.md"))
 }

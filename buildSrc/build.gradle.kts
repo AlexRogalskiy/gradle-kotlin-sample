@@ -48,6 +48,7 @@ dependencies {
 
   implementation("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${PluginVersions.sonarqube}")
   implementation("org.jlleitschuh.gradle:ktlint-gradle:${PluginVersions.ktlint}")
+  implementation("com.github.blueboxware.tocme:com.github.blueboxware.tocme.gradle.plugin:${PluginVersions.tocme}")
 
   implementation("com.adarshr:gradle-test-logger-plugin:${PluginVersions.test_logger}")
   implementation("com.diffplug.spotless:spotless-plugin-gradle:${PluginVersions.spotless}")
@@ -73,4 +74,5 @@ object PluginVersions {
   const val semver4j = "3.1.0"
   const val nexus_staging = "0.22.0"
   const val compat_validator = "0.3.0"
+  const val tocme = "1.2"
 }

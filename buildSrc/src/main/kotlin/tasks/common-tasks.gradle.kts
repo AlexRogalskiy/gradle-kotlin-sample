@@ -22,15 +22,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utils.javaVersion
 import utils.kotlinVersion
 import utils.parallelForks
-import extensions.getProjectGroup
-import extensions.getProjectVersion
-import extensions.getProjectDescription
 import extensions.createKotlinMainSources
 import extensions.createKotlinTestSources
 
 plugins {
   id("org.jetbrains.kotlin.jvm") apply false
   id("org.jetbrains.kotlin.kapt") apply false
+
   id("maven") apply false
   id("java") apply false
 }
@@ -187,6 +185,8 @@ tasks {
     dependsOn(configurations.runtimeClasspath)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
+    System.out.println(project)
+
     manifest {
 //      attributes["Class-Path"] =
 //        configurations.compileClasspath.get()
@@ -196,9 +196,10 @@ tasks {
 //          .map { if (it.isDirectory) it else zipTree(it) }
 //          .toList()
 //          .joinToString(" ")
-      attributes["Project-Version"] = getProjectVersion()
-      attributes["Project-Group"] = getProjectGroup()
-      attributes["Project-Description"] = getProjectDescription()
+      attributes["Implementation-Title"] = project.extra["appTitle"]
+      attributes["Implementation-Version"] = project.extra["appVersion"]
+      attributes["Implementation-Group"] = project.extra["appGroup"]
+      attributes["Implementation-Description"] = project.extra["appDescription"]
     }
 
     from(sourceSets.main.get().output)
@@ -216,6 +217,7 @@ tasks {
   }
 
   registering(Delete::class) {
-    delete(rootProject.buildDir)
+    delete(allprojects.map { it.buildDir })
+    //delete(rootProject.buildDir)
   }
 }

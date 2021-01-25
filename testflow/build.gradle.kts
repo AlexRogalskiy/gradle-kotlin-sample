@@ -20,7 +20,6 @@ plugins {
 repositories {
   mavenCentral()
   jcenter()
-
   maven("https://dl.bintray.com/spekframework/spek-dev")
 }
 
@@ -51,6 +50,7 @@ dependencies {
   }
 
   // spek requires kotlin-reflect, can be omitted if already in the classpath
+  runtimeOnly("org.jetbrains.kotlin:kotlin-script-runtime:${Dependencies.Libs.KOTLIN_REFLECT_VERSION}")
   runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:${Dependencies.Libs.KOTLIN_REFLECT_VERSION}")
 }
 

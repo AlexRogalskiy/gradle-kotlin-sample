@@ -15,8 +15,9 @@ env:
   LC_MESSAGES: "en_US.UTF-8"
   LC_ALL: "en_US.UTF-8"
   LANGUAGE: "en_US:en"
+  JAVA_OPTS: -Xms512m -Xmx1024m
   GRADLE_OPTS: >-
-    -Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false
+    -Dorg.gradle.configureondemand=true -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxPermSize=2048m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8"
 
 jobs:
   setup:

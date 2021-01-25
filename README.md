@@ -20,6 +20,19 @@
 ![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/gradle-kotlin-sample)
 ![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/gradle-kotlin-sample)
 
+## 🎹 _Table of contents_
+
+<!-- toc -->
+- [☝ Getting Started](#-getting-started)
+- [👉 Development](#-development)
+- [📝 Versioning](#-versioning)
+- [🌹 Authors](#-authors)
+- [💕 Contributing](#-contributing)
+- [🚨 Visitor stats](#-visitor-stats)
+- [⚽ Licensing](#-licensing)
+- [🌟 Development Support](#-development-support)
+<!-- /toc -->
+
 ## ☝ _Getting Started_
 
 <a href="https://www.repostatus.org/#active">
