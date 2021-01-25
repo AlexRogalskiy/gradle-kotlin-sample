@@ -48,12 +48,13 @@ dependencies {
 
   implementation("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${PluginVersions.sonarqube}")
   implementation("org.jlleitschuh.gradle:ktlint-gradle:${PluginVersions.ktlint}")
-  implementation("com.github.blueboxware.tocme:com.github.blueboxware.tocme.gradle.plugin:${PluginVersions.tocme}")
 
   implementation("com.adarshr:gradle-test-logger-plugin:${PluginVersions.test_logger}")
   implementation("com.diffplug.spotless:spotless-plugin-gradle:${PluginVersions.spotless}")
   implementation("com.vdurmont:semver4j:${PluginVersions.semver4j}")
   implementation("com.google.android.gms:oss-licenses-plugin:${PluginVersions.oss_license}")
+
+  implementation("com.github.blueboxware.tocme:com.github.blueboxware.tocme.gradle.plugin:${PluginVersions.tocme}")
   implementation("com.github.breadmoirai:github-release:${PluginVersions.github_release}")
   implementation("com.github.jengelman.gradle.plugins:shadow:${PluginVersions.shadow}")
   implementation("com.github.ben-manes:gradle-versions-plugin:${PluginVersions.versions}")

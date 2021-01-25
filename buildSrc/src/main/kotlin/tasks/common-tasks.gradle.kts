@@ -178,14 +178,21 @@ tasks {
     filter {
       isFailOnNoMatchingTests = false
     }
+
+    val copyTestResources by registering(Copy::class) {
+      from("${projectDir}/src/test/resources")
+      into("${buildDir}/classes/kotlin/test")
+    }
+
+    processTestResources.configure {
+      dependsOn(copyTestResources)
+    }
   }
 
   withType<Jar> {
     archiveClassifier.set("uber")
     dependsOn(configurations.runtimeClasspath)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    System.out.println(project)
 
     manifest {
 //      attributes["Class-Path"] =
@@ -218,6 +225,6 @@ tasks {
 
   registering(Delete::class) {
     delete(allprojects.map { it.buildDir })
-    //delete(rootProject.buildDir)
+//    delete(rootProject.buildDir)
   }
 }

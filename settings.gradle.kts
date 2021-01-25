@@ -28,6 +28,7 @@ pluginManagement {
 plugins {
   @Suppress("UnstableApiUsage")
   `gradle-enterprise`
+  id("com.pablisco.gradle.automodule") version "0.15"
 }
 
 gradleEnterprise {
