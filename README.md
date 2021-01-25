@@ -23,14 +23,14 @@
 ## 🎹 _Table of contents_
 
 <!-- toc -->
-- [☝ Getting Started](#-getting-started)
-- [👉 Development](#-development)
-- [📝 Versioning](#-versioning)
-- [🌹 Authors](#-authors)
-- [💕 Contributing](#-contributing)
-- [🚨 Visitor stats](#-visitor-stats)
-- [⚽ Licensing](#-licensing)
-- [🌟 Development Support](#-development-support)
+- [☝ _Getting Started_](#-getting-started)
+- [👉 _Development_](#-development)
+- [📝 _Versioning_](#-versioning)
+- [🌹 _Authors_](#-authors)
+- [💕 _Contributing_](#-contributing)
+- [🚨 _Visitor stats_](#-visitor-stats)
+- [⚽ _Licensing_](#-licensing)
+- [🌟 _Development Support_](#-development-support)
 <!-- /toc -->
 
 ## ☝ _Getting Started_
