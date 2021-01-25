@@ -45,6 +45,10 @@ java {
   }
 }
 
+kapt {
+  useBuildCache = true
+}
+
 configure<SourceSetContainer> {
   named("main") {
     java.srcDir("src/core/java")
@@ -52,8 +56,8 @@ configure<SourceSetContainer> {
 }
 
 configure<JavaPluginConvention> {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = javaVersion
+  targetCompatibility = javaVersion
 }
 
 //configure<kotlinx.validation.ApiValidationExtension> {
@@ -221,6 +225,14 @@ tasks {
         }
       }
     })
+  }
+
+  create<Zip>("zip") {
+    description = "Archives sources in to a zip file"
+    group = "Archive"
+
+    from("src")
+    setArchiveName("gradle-kotlin-sample.zip")
   }
 
   registering(Delete::class) {
