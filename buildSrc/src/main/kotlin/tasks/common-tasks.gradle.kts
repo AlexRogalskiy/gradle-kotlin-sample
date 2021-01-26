@@ -138,6 +138,7 @@ tasks {
 
       kotlinOptions.freeCompilerArgs = listOf(
         "-progressive",
+        "-Xuse-ir",
         "-Xskip-runtime-version-check",
         "-Xdisable-default-scripting-plugin",
         "-Xuse-experimental=kotlin.Experimental",
