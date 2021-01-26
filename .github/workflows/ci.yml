@@ -160,8 +160,8 @@ jobs:
         uses: actions/upload-artifact@v1
         if: always()
         with:
-          name: gradle-kotlin-sample
-          path: build/libs
+          name: build
+          path: libs
 
       - name: Publish Build Report As Comment If Failure
         uses: mshick/add-pr-comment@v1

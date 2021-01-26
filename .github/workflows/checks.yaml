@@ -66,7 +66,7 @@ jobs:
         run: sudo chmod +x ./gradlew
 
       - name: Run detekt
-        run: ./gradlew detektAll
+        run: ./gradlew detekt
 
       - name: Run build
         run: ./gradlew clean spotlessApply build  -x test --warning-mode all
