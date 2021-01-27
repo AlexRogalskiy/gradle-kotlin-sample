@@ -21,6 +21,15 @@ max_line_length = 100
 [*.{kt, groovy}]
 indent_size = 4
 max_line_length = 100
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+end_of_line = lf
+charset = utf-8
+
+[*.kts]
+indent_size = 2
+max_line_length = 100
 
 [*.story]
 indent_size = 4
@@ -38,3 +47,6 @@ indent_size = 4
 [*.{md, markdown}]
 max_line_length = off
 trim_trailing_whitespace = false
+
+[gradlew.bat]
+end_of_line = crlf
