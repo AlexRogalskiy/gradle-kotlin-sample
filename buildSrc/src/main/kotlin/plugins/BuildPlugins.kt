@@ -30,4 +30,5 @@ object BuildPlugins {
     const val dokka = "plugins.dokka"
     const val github_releasing = "plugins.releasing"
     const val nexus_packaging = "plugins.packaging"
+    const val tocme = "plugins.tocme"
 }

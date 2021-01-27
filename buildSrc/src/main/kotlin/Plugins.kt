@@ -16,7 +16,6 @@
 object Plugins {
     const val kotlinJvm = "org.jetbrains.kotlin.jvm"
     const val kotlinKapt = "org.jetbrains.kotlin.kapt"
-    const val dokka = "org.jetbrains.dokka"
     const val shadow = "com.github.johnrengelman.shadow"
     const val versions = "com.github.ben-manes.versions"
     const val compatValidator = "binary-compatibility-validator"

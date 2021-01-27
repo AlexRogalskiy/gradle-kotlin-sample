@@ -15,9 +15,9 @@
  */
 package plugins
 
-import constants.Config
-import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
+import com.diffplug.gradle.spotless.SpotlessExtension
+import constants.Config
 
 apply<SpotlessPlugin>()
 
@@ -46,6 +46,7 @@ configure<SpotlessExtension> {
   format("xml") {
     target("**/res/**/*.xml")
     targetExclude("**/build/**")
+
     indentWithSpaces(Config.SPOTLESS_INDENT_WITH_SPACES)
     trimTrailingWhitespace()
     endWithNewline()
@@ -57,7 +58,7 @@ configure<SpotlessExtension> {
         mapOf(
           "dir" to ".",
           "include" to listOf("**/*.kt"),
-          "exclude" to listOf("**/build/**", "**/spotless/*.kt")
+          "exclude" to listOf("**/build/**", "**/spotless/*.kt", "**/automodule/**")
         )
       )
     )
@@ -79,7 +80,8 @@ configure<SpotlessExtension> {
           "exclude" to listOf(
             "**/build/**",
             "**/spotless/*.java",
-            "**/PagingRequestHelper.java"
+            "**/PagingRequestHelper.java",
+            "**/automodule/**"
           )
         )
       )
@@ -100,7 +102,13 @@ configure<SpotlessExtension> {
         mapOf(
           "dir" to ".",
           "include" to listOf("**/*.gradle.kts", "*.gradle.kts"),
-          "exclude" to listOf("**/build/**", "**/spotless/*.java", "**/spotless/*.kt")
+          "exclude" to listOf(
+            "**/build/**",
+            "**/spotless/*.java",
+            "**/spotless/*.kt",
+            "**/automodule/**",
+            "**/api/**"
+          )
         )
       )
     )

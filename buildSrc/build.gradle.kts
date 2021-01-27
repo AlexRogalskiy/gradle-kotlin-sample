@@ -53,13 +53,15 @@ dependencies {
   implementation("com.diffplug.spotless:spotless-plugin-gradle:${PluginVersions.spotless}")
   implementation("com.vdurmont:semver4j:${PluginVersions.semver4j}")
   implementation("com.google.android.gms:oss-licenses-plugin:${PluginVersions.oss_license}")
+
+  implementation("com.github.blueboxware.tocme:com.github.blueboxware.tocme.gradle.plugin:${PluginVersions.tocme}")
   implementation("com.github.breadmoirai:github-release:${PluginVersions.github_release}")
   implementation("com.github.jengelman.gradle.plugins:shadow:${PluginVersions.shadow}")
   implementation("com.github.ben-manes:gradle-versions-plugin:${PluginVersions.versions}")
 }
 
 object PluginVersions {
-  const val kotlin = "1.4.21"
+  const val kotlin = "1.4.30-RC"
   const val detekt = "1.15.0"
   const val github_release = "2.2.12"
   const val oss_license = "0.10.2"
@@ -73,4 +75,5 @@ object PluginVersions {
   const val semver4j = "3.1.0"
   const val nexus_staging = "0.22.0"
   const val compat_validator = "0.3.0"
+  const val tocme = "1.2"
 }

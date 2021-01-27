@@ -9,29 +9,67 @@ on:
       - '*'
 
 env:
-  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
+  LANG: "en_US.UTF-8"
+  LC_MESSAGES: "en_US.UTF-8"
+  LC_ALL: "en_US.UTF-8"
+  LANGUAGE: "en_US:en"
+  JAVA_OPTS: -Xms512m -Xmx1024m
+  GRADLE_OPTS: >-
+    -Dorg.gradle.configureondemand=true -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxPermSize=2048m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8"
 
 jobs:
   gradle:
     runs-on: macOS-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 2
+
+      - name: Prepare git
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.ignorecase false
+          git config --global help.autocorrect 1
+          git config --global core.fileMode false
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      # install a specific version of Node using
+      # https://github.com/actions/setup-node
+      - name: Use Node.js v12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      # just so we learn about available environment variables GitHub provides
+      - name: Print env variables
+        run: |
+          npm i -g @bahmutov/print-env
+          print-env GITHUB
 
       - name: Cache Gradle Caches
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.gradle/caches/
           key: cache-clean-gradle-${{ matrix.os }}-${{ matrix.jdk }}
 
       - name: Cache Gradle Wrapper
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.gradle/wrapper/
           key: cache-clean-wrapper-${{ matrix.os }}-${{ matrix.jdk }}
 
+      - name: Chmod permissions
+        run: sudo chmod +x ./gradlew
+
       - name: Run detekt
-        run: ./gradlew detektAll
+        run: ./gradlew detekt
+
+      - name: Run build
+        run: ./gradlew clean spotlessApply build  -x test --warning-mode all
 
       # We stop gradle at the end to make sure the cache folders
       # don't contain any lock files and are free to be cached.

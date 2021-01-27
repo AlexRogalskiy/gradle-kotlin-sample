@@ -78,6 +78,7 @@ subprojects {
           password = sonatypePassword
         }
       }
+
       maven {
         name = "sonatypeSnapshot"
         url = uri("https://oss.sonatype.org/content/repositories/snapshots")

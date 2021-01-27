@@ -13,8 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-val minSdkVersion: String by project
+val appTitle: String by project
+val appDescription: String by project
+val appGroup: String by project
+val appVersion: String by project
 
 extra.apply {
-  this["minSdkVersion"] = minSdkVersion.toInt()
+  this["appTitle"] = appTitle
+  this["appDescription"] = appDescription
+  this["appGroup"] = appGroup
+  this["appVersion"] = appVersion
 }

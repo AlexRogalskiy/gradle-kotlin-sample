@@ -56,20 +56,6 @@ fun Project.createKotlinTestSources(
 fun Project.getProjectVersion() = utils.getSemanticAppVersionName()
 
 /**
- * Returns the project group name
- *
- * @return The group name
- */
-fun Project.getProjectGroup() = utils.getAppGroupName()
-
-/**
- * Returns the project description
- *
- * @return The description
- */
-fun Project.getProjectDescription() = utils.getAppDescription()
-
-/**
  * Basically fetches the recent git commit hash
  */
 internal inline val Project.gitSha: String

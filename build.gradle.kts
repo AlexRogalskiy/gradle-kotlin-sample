@@ -17,9 +17,6 @@ import constants.Dependencies
 import plugins.BuildPlugins
 import tasks.BuildTasks
 import extensions.applyDefaults
-import extensions.getProjectGroup
-import extensions.getProjectVersion
-import extensions.getProjectDescription
 import common.addJUnit5TestDependencies
 
 repositories {
@@ -28,8 +25,8 @@ repositories {
   google()
   jcenter {
     content {
-      // detekt needs 'kotlinx-html' for the html report
       includeGroup("org.jetbrains.kotlinx")
+      includeGroup("io.arrow-kt")
     }
   }
 
@@ -47,12 +44,9 @@ repositories {
 plugins {
   id(Plugins.kotlinJvm)
   id(Plugins.kotlinKapt)
-
-  id(Plugins.dokka) apply false
-  id(Plugins.shadow) apply false
+  id(Plugins.shadow)
   id(Plugins.versions)
   id(Plugins.compatValidator)
-
   id(Plugins.sonarQube)
 }
 
@@ -67,27 +61,26 @@ allprojects {
   plugins.apply(BuildPlugins.test_logger)
   plugins.apply(BuildPlugins.kotlin_sources)
   plugins.apply(BuildPlugins.dokka)
+  plugins.apply(BuildPlugins.tocme)
   // plugins.apply(BuildPlugins.jacoco)
 }
 
 subprojects {
+  apply(from = "$rootDir/versions.gradle.kts")
+
   plugins.apply(BuildTasks.COMMON_TASKS)
 
-  apply {
-    from("$rootDir/versions.gradle.kts")
-  }
-
-  group = getProjectGroup()
-  version = getProjectVersion()
-  description = getProjectDescription()
+  group = project.extra["appGroup"]
+  version = project.extra["appVersion"]
+  description = project.extra["appDescription"] as String
 
   dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // kotlin library dependencies
-    // kotlin(module = "jvm", version = "1.4.71")
-    // implementation(kotlin("stdlib"))
+    implementation(Dependencies.Core.kotlin_reflect)
     implementation(Dependencies.Core.kotlin_stdlib)
+    implementation(Dependencies.Core.kotlin_stdlib_common)
     implementation(Dependencies.Core.kotlin_stdlib_jdk8)
 
     // annotation processors
@@ -126,6 +119,8 @@ subprojects {
 
     // kotlin test library dependencies
     testImplementation(Dependencies.Test.kotlin_test)
+    testImplementation(Dependencies.Test.kotlin_test_common)
+    testImplementation(Dependencies.Test.kotlin_test_annotations_common)
 
     // kotest library dependencies
     testImplementation(Dependencies.Test.kotest_assertions_arrow)

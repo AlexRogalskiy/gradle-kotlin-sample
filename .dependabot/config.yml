@@ -1,0 +1,53 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+version: 2
+
+updates:
+  - package-ecosystem: "gradle" # See documentation for possible values
+    open-pull-requests-limit: 2
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
+      time: "13:00"
+    allow:
+      - dependency-type: production
+    commit-message:
+      prefix: "Dependency update"
+    labels:
+      - ":game_die: dependencies"
+      - ":robot: bot"
+    assignees:
+      - "AlexRogalskiy"
+    reviewers:
+      - "AlexRogalskiy"
+
+  - package-ecosystem: "github-actions"
+    open-pull-requests-limit: 2
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "13:00"
+    labels:
+      - "dependencies"
+      - ":robot: bot"
+    assignees:
+      - "AlexRogalskiy"
+    reviewers:
+      - "AlexRogalskiy"
+    allow:
+      - dependency-type: direct
+
+update_configs:
+  - package_manager: "gradle"
+    directory: "/"
+    update_schedule: "daily"
+    allowed_updates:
+      - match:
+          update_type: security
+    automerged_updates:
+      - match:
+          dependency_type: all
+          update_type: in_range
+    version_requirement_updates: widen_ranges

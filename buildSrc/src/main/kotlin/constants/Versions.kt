@@ -17,7 +17,7 @@ package constants
 
 object Versions {
     // core
-    const val kotlin = "1.4.21"
+    const val kotlin = "1.4.30-RC"
     const val kotlinx_serialization = "0.20.0"
     const val kotlin_coroutines = "1.3.4"
     const val rxjava = "2.2.20"
