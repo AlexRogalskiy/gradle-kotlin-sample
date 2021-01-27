@@ -15,12 +15,13 @@
  */
 pluginManagement {
   repositories {
-    maven("https://dl.bintray.com/kotlin/kotlin-eap/")
-    maven("https://dl.bintray.com/kotlin/kotlin-dev/")
-    maven("https://plugins.gradle.org/m2/")
     mavenCentral()
     jcenter()
     gradlePluginPortal()
+
+    maven("https://dl.bintray.com/kotlin/kotlin-eap/")
+    maven("https://dl.bintray.com/kotlin/kotlin-dev/")
+    maven("https://plugins.gradle.org/m2/")
   }
 }
 
@@ -37,6 +38,8 @@ gradleEnterprise {
     termsOfServiceAgree = "yes"
   }
 }
+
+rootProject.name = "gradle-kotlin-sample"
 
 include(
   "appflow",

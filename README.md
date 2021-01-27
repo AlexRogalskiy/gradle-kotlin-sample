@@ -31,13 +31,16 @@
 - [🚨 Visitor stats](#-visitor-stats)
 - [⚽ Licensing](#-licensing)
 - [🌟 Development Support](#-development-support)
+- [👨‍👨‍👧‍👦 Acknowledgement](#-acknowledgement)
 <!-- /toc -->
 
 ## ☝ _Getting Started_
 
-<a href="https://www.repostatus.org/#active">
-    <img src="https://img.shields.io/badge/Project%20Status-Active-brightgreen?style=for-the-badge" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." />
-</a>
+<p align="left">
+    <a href="https://www.repostatus.org/#active">
+        <img src="https://img.shields.io/badge/Project%20Status-Active-brightgreen?style=for-the-badge" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." />
+    </a>
+</p>
 
 Gradle Kotlin Sample project is intended to provide minimal bootstrap configuration for various design patterns and prototype implementations.
 
@@ -97,3 +100,7 @@ Like _gradle-kotlin-sample_ ? Consider buying me a coffee :\)
 [![Become a Patron](https://img.shields.io/badge/Become_Patron-Support_me_on_Patreon-blue.svg?style=flat-square&logo=patreon&color=e64413)](https://www.patreon.com/alexrogalskiy)
 [![Buy Me A Coffee](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellow.svg?logo=buy%20me%20a%20coffee)](https://www.buymeacoffee.com/AlexRogalskiy)
 [![KoFi](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-yellow.svg?logo=ko-fi)](https://ko-fi.com/alexrogalskiy)
+
+## 👨‍👨‍👧‍👦 _Acknowledgement_
+
+[![Stargazers repo roster for @AlexRogalskiy/gradle-kotlin-sample](https://reporoster.com/stars/AlexRogalskiy/gradle-kotlin-sample)](https://github.com/AlexRogalskiy/gradle-kotlin-sample/stargazers)
