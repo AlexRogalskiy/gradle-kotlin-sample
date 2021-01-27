@@ -47,7 +47,7 @@ plugins {
   id(Plugins.kotlinKapt)
   id(Plugins.shadow)
   id(Plugins.versions)
-  id(Plugins.compatValidator)
+  //id(Plugins.compatValidator)
   id(Plugins.sonarQube)
 }
 
@@ -70,6 +70,8 @@ subprojects {
   apply(from = "$rootDir/versions.gradle.kts")
 
   plugins.apply(BuildTasks.COMMON_TASKS)
+
+  kotlin.sourceSets["main"].kotlin.srcDirs("$buildDir/generated/kotlin/config")
 
   group = project.extra["appGroup"]
   version = project.extra["appVersion"]
@@ -158,4 +160,16 @@ subprojects {
 //    testRuntimeOnly(Dependencies.Test.junit_params)
 //    testRuntimeOnly(Dependencies.Test.junit_vintage)
   }
+}
+
+val generateCiProfile by tasks.registering(misc.ProfileConfigTask::class) {
+  fileToUpdate = file("${rootProject.rootDir}/profiles/ci.properties")
+  generatedSourceOutput =
+    file("${rootProject.buildDir}/generated/source/main/kotlin/io/nullables/api/profiles/ci")
+}
+
+val generateDebugProfile by tasks.registering(misc.ProfileConfigTask::class) {
+  fileToUpdate = file("${rootProject.rootDir}/profiles/debug.properties")
+  generatedSourceOutput =
+    file("${rootProject.buildDir}/generated/source/main/kotlin/io/nullables/api/profiles/debug")
 }
