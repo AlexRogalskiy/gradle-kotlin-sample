@@ -33,7 +33,8 @@ configure<SpotlessExtension> {
             ".gradle/**",
             ".gradle-cache/**",
             "**/tools/**",
-            "**/build/**"
+            "**/build/**",
+            "**/api/**"
           )
         )
       )
@@ -58,7 +59,11 @@ configure<SpotlessExtension> {
         mapOf(
           "dir" to ".",
           "include" to listOf("**/*.kt"),
-          "exclude" to listOf("**/build/**", "**/spotless/*.kt", "**/automodule/**")
+          "exclude" to listOf(
+            "**/build/**",
+            "**/spotless/*.kt",
+            "**/automodule/**"
+          )
         )
       )
     )
@@ -81,7 +86,8 @@ configure<SpotlessExtension> {
             "**/build/**",
             "**/spotless/*.java",
             "**/PagingRequestHelper.java",
-            "**/automodule/**"
+            "**/automodule/**",
+            "**/api/**"
           )
         )
       )

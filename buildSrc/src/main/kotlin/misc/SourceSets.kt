@@ -54,15 +54,20 @@ private interface SourceSetCreator {
 /**
  * A [misc.SourceSetCreator] implementation to create main Kotlin [SourceSet]
  */
-internal object MainSources : misc.SourceSetCreator {
-    override val name = misc.InternalSourceSet.MAIN
+internal object MainSources : SourceSetCreator {
+    /**
+     * Default sources naming convention
+     */
+    override val name = InternalSourceSet.MAIN
 
+    @Override
     override fun create(
         namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>,
         project: Project
     ): SourceSet {
         return namedDomainObjectContainer.getByName(name).apply {
             java.srcDir("src/main/kotlin")
+            resources.srcDir("src/main/resources")
         }
     }
 }
@@ -70,9 +75,13 @@ internal object MainSources : misc.SourceSetCreator {
 /**
  * A [misc.SourceSetCreator] implementation to create test Kotlin [SourceSet]
  */
-internal object TestSources : misc.SourceSetCreator {
-    override val name = misc.InternalSourceSet.TEST
+internal object TestSources : SourceSetCreator {
+    /**
+     * Default sources naming convention
+     */
+    override val name = InternalSourceSet.TEST
 
+    @Override
     override fun create(
         namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>,
         project: Project

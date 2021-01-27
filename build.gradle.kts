@@ -39,6 +39,7 @@ repositories {
   maven("https://dl.bintray.com/serpro69/maven/")
   maven("https://dl.bintray.com/arrow-kt/arrow-kt/")
   maven("https://dl.bintray.com/kotlin/kotlin-eap")
+  maven("http://dl.bintray.com/kategory/maven")
 }
 
 plugins {
