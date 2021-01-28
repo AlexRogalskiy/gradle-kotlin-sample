@@ -42,6 +42,9 @@
     </a>
 </p>
 
+[![Created Badge](https://badges.pufler.dev/created/AlexRogalskiy/gradle-kotlin-sample)](https://badges.pufler.dev)
+[![Updated Badge](https://badges.pufler.dev/updated/AlexRogalskiy/gradle-kotlin-sample)](https://badges.pufler.dev)
+
 _**Gradle Kotlin Sample**_ project is intended to provide minimal bootstrap configuration for various design patterns and prototype implementations.
 
 ## 👉 _Development_
@@ -68,6 +71,8 @@ with community support please contact with us if you have some question or propo
 
 ## 💕 _Contributing_
 
+[![Contributors Display](https://badges.pufler.dev/contributors/AlexRogalskiy/gradle-kotlin-sample?size=50&padding=5&bots=true)](https://badges.pufler.dev)
+
 Please read [CONTRIBUTING.md](https://github.com/AlexRogalskiy/gradle-kotlin-sample/blob/master/.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -76,6 +81,7 @@ See also the list of [contributors](https://github.com/AlexRogalskiy/gradle-kotl
 
 ## 🚨 _Visitor stats_
 
+[![Visits Badge](https://badges.pufler.dev/visits/AlexRogalskiy/gradle-kotlin-sample)](https://badges.pufler.dev)
 ![Github contributors](https://img.shields.io/github/all-contributors/AlexRogalskiy/gradle-kotlin-sample)
 
 ![GitHub stars](https://img.shields.io/github/stars/AlexRogalskiy/jgradle-kotlin-sample?style=social)
