@@ -104,3 +104,8 @@ Like _**Gradle Kotlin Sample**_ ? Consider buying me a coffee :\)
 ## 👨‍👨‍👧‍👦 _Acknowledgement_
 
 [![Stargazers repo roster for @AlexRogalskiy/gradle-kotlin-sample](https://reporoster.com/stars/AlexRogalskiy/gradle-kotlin-sample)](https://github.com/AlexRogalskiy/gradle-kotlin-sample/stargazers)
+
+## ⏰ _Recent activities_
+
+<!--START_SECTION:activity-->
+<!--END_SECTION:activity-->
