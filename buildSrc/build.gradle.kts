@@ -38,6 +38,8 @@ repositories {
 }
 
 dependencies {
+  implementation(kotlin("script-runtime"))
+
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${PluginVersions.kotlin}")
   implementation("org.jetbrains.kotlin:kotlin-serialization:${PluginVersions.kotlin}")
   implementation("org.jetbrains.dokka:dokka-gradle-plugin:${PluginVersions.dokka}")

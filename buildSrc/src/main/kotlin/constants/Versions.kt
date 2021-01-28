@@ -23,6 +23,7 @@ object Versions {
     const val rxjava = "2.2.20"
     const val logback = "1.2.3"
     const val arrow = "0.11.0"
+    const val jackson = "2.10.3"
 
     // checkstyle
     const val detekt = "1.15.0"
@@ -39,6 +40,7 @@ object Versions {
     const val kotest_junit = "4.3.2"
     const val kotlinx = "1.4.2"
     const val klaxon = "5.4"
+    const val vavr = "0.10.2"
     const val clikt = "2.6.0"
     const val reflections = "0.9.12"
     const val spek2 = "2.0.9"

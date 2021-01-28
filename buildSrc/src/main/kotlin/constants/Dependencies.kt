@@ -18,24 +18,24 @@ package constants
 object Dependencies {
 
     object Core {
-        // Kotlin dependencies
+        // Kotlin library dependencies
         const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         const val kotlin_stdlib_common =
             "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
         const val kotlin_reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
         const val kotlin_stdlib_jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
 
-        // Kotlinx dependencies
+        // Kotlinx library dependencies
         const val kotlinx_coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
         const val kotlinx_serialization =
             "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinx_serialization}"
 
-        // Clikt dependencies
+        // Clikt library dependencies
         const val clikt =
             "com.github.ajalt:clikt:${Versions.clikt}"
 
-        // Arrow dependencies
+        // Arrow library dependencies
         const val arrow_meta =
             "io.arrow-kt:arrow-meta:${Versions.arrow}"
         const val arrow_annotations =
@@ -56,10 +56,22 @@ object Dependencies {
             "io.arrow-kt:arrow-mtl:${Versions.arrow}"
         const val arrow_syntax =
             "io.arrow-kt:arrow-syntax:${Versions.arrow}"
+        const val arrow_data =
+            "io.arrow-kt:arrow-core-data:${Versions.arrow}"
 
-        // Klaxon dependencies
+        // Jackson library dependencies
+        const val jackson_core =
+            "com.fasterxml.jackson.core:jackson-core:${Versions.jackson}"
+        const val jackson_databind =
+            "com.fasterxml.jackson.core:jackson-databind:${Versions.jackson}"
+
+        // Klaxon library dependencies
         const val klaxon =
             "com.beust:klaxon:${Versions.klaxon}"
+
+        // Vavr library dependencies
+        const val vavr =
+            "io.vavr:vavr-kotlin:${Versions.vavr}"
 
         // Logback dependencies
         const val logback =

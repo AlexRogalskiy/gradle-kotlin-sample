@@ -103,9 +103,17 @@ subprojects {
     implementation(Dependencies.Core.arrow_validation)
     implementation(Dependencies.Core.arrow_mtl)
     implementation(Dependencies.Core.arrow_syntax)
+    implementation(Dependencies.Core.arrow_data)
+
+    // jackson library dependencies
+    implementation(Dependencies.Core.jackson_core)
+    implementation(Dependencies.Core.jackson_databind)
 
     // json parsing library dependencies
     implementation(Dependencies.Core.klaxon)
+
+    // vavr library dependencies
+    implementation(Dependencies.Core.vavr)
 
     // logging library dependencies
     implementation(Dependencies.Core.logback)
