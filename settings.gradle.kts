@@ -21,6 +21,7 @@ pluginManagement {
 
     maven("https://dl.bintray.com/kotlin/kotlin-eap/")
     maven("https://dl.bintray.com/kotlin/kotlin-dev/")
+    maven("https://dl.bintray.com/kotlin/kotlinx/")
     maven("https://plugins.gradle.org/m2/")
   }
 }
