@@ -141,7 +141,7 @@ tasks {
         "-Xuse-ir",
         "-Xskip-runtime-version-check",
         "-Xdisable-default-scripting-plugin",
-        "-Xuse-experimental=kotlin.Experimental",
+        "-Xuse-experimental=kotlin.Experimental,kotlinx.coroutines.ExperimentalCoroutinesApi",
         "-Xopt-in=kotlin.RequiresOptIn",
         "-Xinline-classes"
       )
