@@ -46,7 +46,6 @@ java {
 }
 
 kapt {
-  generateStubs = true
   useBuildCache = true
 }
 
