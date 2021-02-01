@@ -46,6 +46,7 @@ java {
 }
 
 kapt {
+  generateStubs = true
   useBuildCache = true
 }
 
@@ -139,6 +140,7 @@ tasks {
       kotlinOptions.freeCompilerArgs = listOf(
         "-progressive",
         "-Xuse-ir",
+        "-Xjvm-default=enable",
         "-Xskip-runtime-version-check",
         "-Xskip-prerelease-check",
         "-Xdisable-default-scripting-plugin",

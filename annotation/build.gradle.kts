@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 plugins {
-  kotlin("jvm")
+  `jvm`
+  `kotlin-kapt`
 }
 
 repositories {
