@@ -140,9 +140,12 @@ tasks {
         "-progressive",
         "-Xuse-ir",
         "-Xskip-runtime-version-check",
+        "-Xskip-prerelease-check",
         "-Xdisable-default-scripting-plugin",
-        "-Xuse-experimental=kotlin.Experimental,kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xuse-experimental=kotlin.Experimental",
         "-Xopt-in=kotlin.RequiresOptIn",
+        "-Xopt-in=kotlin.time.ExperimentalTime",
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
         "-Xinline-classes"
       )
       kotlinOptions.allWarningsAsErrors = project.shouldTreatCompilerWarningsAsErrors()
