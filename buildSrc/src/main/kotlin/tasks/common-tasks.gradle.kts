@@ -153,6 +153,11 @@ tasks {
     }
   }
 
+  withType<Javadoc> {
+    (options as CoreJavadocOptions).addStringOption("Xdoclint:none", "-quiet")
+    options.encoding = "UTF-8"
+  }
+
   withType<Test> {
     useJUnitPlatform()
 
@@ -243,5 +248,10 @@ tasks {
   registering(Delete::class) {
     delete(allprojects.map { it.buildDir })
 //    delete(rootProject.buildDir)
+  }
+
+  register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+    delete(File("buildSrc\\build"))
   }
 }
