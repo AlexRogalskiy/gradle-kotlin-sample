@@ -34,7 +34,7 @@ plugins {
 
 jacoco {
   toolVersion = Versions.jacoco
-  includeNoLocationClasses = true
+  //includeNoLocationClasses = true
 }
 
 val examplesOrTestUtils = setOf(

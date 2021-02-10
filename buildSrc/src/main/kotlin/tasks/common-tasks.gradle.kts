@@ -76,7 +76,6 @@ configure<JavaPluginConvention> {
 //  validationDisabled = false
 //}
 
-// additional source sets
 sourceSets {
   createKotlinMainSources(this)
   createKotlinTestSources(this)
@@ -247,11 +246,7 @@ tasks {
 
   registering(Delete::class) {
     delete(allprojects.map { it.buildDir })
-//    delete(rootProject.buildDir)
-  }
-
-  register("clean", Delete::class) {
-    delete(rootProject.buildDir)
     delete(File("buildSrc\\build"))
+//    delete(rootProject.buildDir)
   }
 }
