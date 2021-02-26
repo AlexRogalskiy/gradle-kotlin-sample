@@ -29,13 +29,30 @@ import utils.shouldTreatCompilerWarningsAsErrors
 /**
  * An extension to create main Kotlin source set.
  *
- * @param namedDomainObjectContainer The container to create the corresponding source set
+ * @param sourceSet The container to create the corresponding source set
  *
  * @return The main Kotlin [SourceSet]
  */
-fun Project.createKotlinMainSources(
-    namedDomainObjectContainer: NamedDomainObjectContainer<SourceSet>
-) = MainSources.create(namedDomainObjectContainer, this)
+fun Project.createKotlinMainSources(sourceSet: NamedDomainObjectContainer<SourceSet>) =
+    MainSources.create(sourceSet, this)
+
+fun Project.isJavaProject() =
+    listOf("java-library", "java", "java-gradle-plugin").any { plugins.hasPlugin(it) }
+
+fun Project.isKotlinProject() =
+    listOf("kotlin", "kotlin-android", "kotlin-platform-jvm").any { plugins.hasPlugin(it) }
+
+fun Project.isAndroidProject() = listOf(
+    "com.android.library",
+    "com.android.application",
+    "com.android.test",
+    "com.android.feature",
+    "com.android.instantapp"
+).any { plugins.hasPlugin(it) }
+
+fun Project.isJsProject() = plugins.hasPlugin("kotlin2js")
+
+fun Project.isCommonsProject() = plugins.hasPlugin("org.jetbrains.kotlin.platform.common")
 
 /**
  * An extension to create test Kotlin source set.

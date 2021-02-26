@@ -15,7 +15,29 @@
  */
 package utils
 
+import org.gradle.api.Project
 import java.io.File
+
+private val whitespaceRegex = Regex("\\s")
+
+internal val String.dotIdentifier
+    get() = replace("-", "")
+        .replace(".", "")
+        .replace(whitespaceRegex, "")
+
+internal val Project.dotIdentifier get() = "$group$name".dotIdentifier
+
+internal fun String.nonEmptyPrepend(prepend: String) =
+    if (isNotEmpty()) prepend + this else this
+
+internal fun String.toHyphenCase(): String {
+    if (isBlank()) return this
+
+    return this[0].toLowerCase().toString() + toCharArray()
+        .map { it.toString() }
+        .drop(1)
+        .joinToString(separator = "") { if (it[0].isUpperCase()) "-${it[0].toLowerCase()}" else it }
+}
 
 /**
  * Executes the given command in specified working dir
