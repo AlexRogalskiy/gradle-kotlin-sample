@@ -20,6 +20,9 @@
 ![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/gradle-kotlin-sample)
 ![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/gradle-kotlin-sample)
 
+[![dependencies Status](https://status.david-dm.org/gh/AlexRogalskiy/gradle-kotlin-sample.svg)](https://david-dm.org/AlexRogalskiy/gradle-kotlin-sample)
+[![devDependencies Status](https://status.david-dm.org/gh/AlexRogalskiy/gradle-kotlin-sample.svg)](https://david-dm.org/AlexRogalskiy/gradle-kotlin-sample?type=dev)
+
 ## 🎹 _Table of contents_
 
 <!-- toc -->
@@ -60,6 +63,10 @@ _**Gradle Kotlin Sample**_ has experimental support for **Gitpod**, a pre-config
 ## 📝 _Versioning_
 
 The project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/AlexRogalskiy/gradle-kotlin-sample/tags).
+
+## 🐛 _Issues_
+
+[![DeepSource](https://deepsource.io/gh/AlexRogalskiy/gradle-kotlin-sample.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/AlexRogalskiy/gradle-kotlin-sample/?ref=repository-badge)
 
 ## 🌹 _Authors_
 
