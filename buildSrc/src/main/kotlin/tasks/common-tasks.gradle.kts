@@ -15,6 +15,8 @@
  */
 package tasks
 
+import extensions.createKotlinMainSources
+import extensions.createKotlinTestSources
 import extensions.shouldTreatCompilerWarningsAsErrors
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
@@ -22,8 +24,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utils.javaVersion
 import utils.kotlinVersion
 import utils.parallelForks
-import extensions.createKotlinMainSources
-import extensions.createKotlinTestSources
 
 plugins {
   id("org.jetbrains.kotlin.jvm") apply false
@@ -134,8 +134,9 @@ tasks {
       jvmTarget = javaVersion.toString()
       apiVersion = kotlinVersion.toString()
       languageVersion = kotlinVersion.toString()
+      allWarningsAsErrors = project.shouldTreatCompilerWarningsAsErrors()
 
-      kotlinOptions.freeCompilerArgs = listOf(
+      freeCompilerArgs = listOf(
         "-progressive",
         "-Xuse-ir",
         "-Xjvm-default=enable",
@@ -148,7 +149,6 @@ tasks {
         "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
         "-Xinline-classes"
       )
-      kotlinOptions.allWarningsAsErrors = project.shouldTreatCompilerWarningsAsErrors()
     }
   }
 
@@ -249,4 +249,28 @@ tasks {
     delete(File("buildSrc\\build"))
 //    delete(rootProject.buildDir)
   }
+
+  val packageFat by creating(Zip::class) {
+    from(compileKotlin)
+    from(processResources)
+
+    into("lib") { from(configurations.runtimeClasspath) }
+
+    dirMode = 0b111101101 // 0755
+    fileMode = 0b111101101 // 0755
+  }
+
+  val packageLibs by creating(Zip::class) {
+    into("java/lib") { from(configurations.runtimeClasspath) }
+
+    dirMode = 0b111101101 // 0755
+    fileMode = 0b111101101 // 0755
+  }
+
+  val packageSkinny by creating(Zip::class) {
+    from(compileKotlin)
+    from(processResources)
+  }
+
+  build { dependsOn(packageSkinny) }
 }

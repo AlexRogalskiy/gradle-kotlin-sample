@@ -20,15 +20,13 @@
 ![GitHub Repository branches](https://badgen.net/github/branches/AlexRogalskiy/gradle-kotlin-sample)
 ![GitHub Repository dependents](https://badgen.net/github/dependents-repo/AlexRogalskiy/gradle-kotlin-sample)
 
-[![dependencies Status](https://status.david-dm.org/gh/AlexRogalskiy/gradle-kotlin-sample.svg)](https://david-dm.org/AlexRogalskiy/gradle-kotlin-sample)
-[![devDependencies Status](https://status.david-dm.org/gh/AlexRogalskiy/gradle-kotlin-sample.svg)](https://david-dm.org/AlexRogalskiy/gradle-kotlin-sample?type=dev)
-
 ## 🎹 _Table of contents_
 
 <!-- toc -->
 - [☝ Getting Started](#-getting-started)
 - [👉 Development](#-development)
 - [📝 Versioning](#-versioning)
+- [🐛 Issues](#-issues)
 - [🌹 Authors](#-authors)
 - [💕 Contributing](#-contributing)
 - [🚨 Visitor stats](#-visitor-stats)
