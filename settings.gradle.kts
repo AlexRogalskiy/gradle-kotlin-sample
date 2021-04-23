@@ -28,7 +28,7 @@ pluginManagement {
 
 // build scan plugin can only be applied in settings file
 plugins {
-  id("com.gradle.enterprise") version "3.5.1"
+  id("com.gradle.enterprise") version "3.6.1"
   id("com.pablisco.gradle.automodule") version "0.15"
 }
 
