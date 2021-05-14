@@ -139,6 +139,7 @@ tasks {
       freeCompilerArgs = listOf(
         "-progressive",
         "-Xuse-ir",
+        "-Xjsr305=strict",
         "-Xjvm-default=enable",
         "-Xskip-runtime-version-check",
         "-Xskip-prerelease-check",
