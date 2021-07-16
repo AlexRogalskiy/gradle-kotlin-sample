@@ -76,6 +76,18 @@ configure<JavaPluginConvention> {
 //  validationDisabled = false
 //}
 
+//
+//if (JavaVersion.current().isJava9Compatible) {
+//  tasks.withType<JavaCompile>().configureEach { options.compilerArgs.addAll(arrayOf("--release", "8")) }
+//  tasks.withType<GroovyCompile>().configureEach { options.compilerArgs.addAll(arrayOf("--release", "8")) }
+//}
+//
+//val compileJava by project(":").tasks.existing(JavaCompile::class)
+//
+//dependencies {
+//  implementation(files(compileJava.map { it.destinationDir }).builtBy(compileJava))
+//}
+
 sourceSets {
   createKotlinMainSources(this)
   createKotlinTestSources(this)
