@@ -76,6 +76,7 @@ configure<JavaPluginConvention> {
 //  validationDisabled = false
 //}
 
+
 //
 //if (JavaVersion.current().isJava9Compatible) {
 //  tasks.withType<JavaCompile>().configureEach { options.compilerArgs.addAll(arrayOf("--release", "8")) }
