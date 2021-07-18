@@ -29,7 +29,7 @@ plugins {
   id("org.jetbrains.kotlin.jvm") apply false
   id("org.jetbrains.kotlin.kapt") apply false
 
-  id("maven") apply false
+//  id("maven") apply false
   id("java") apply false
 }
 

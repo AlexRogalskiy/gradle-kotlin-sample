@@ -15,6 +15,7 @@
  */
 plugins {
   java
+  kotlin
 }
 
 repositories {
