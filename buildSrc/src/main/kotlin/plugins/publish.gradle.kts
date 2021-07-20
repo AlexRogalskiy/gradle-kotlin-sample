@@ -19,6 +19,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublicationContainer
 import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.plugins.signing.SigningExtension
 
 apply(plugin = "java")
@@ -106,5 +107,40 @@ publishing {
         }
       }
     }
+
+//    register("sonatype", MavenPublication::class) {
+//      artifactId = "smartype-generator"
+//      artifact(fatJar)
+//      artifact(tasks["javadocJar"])
+//      artifact(tasks["sourcesJar"])
+//      pom {
+//        name.set("Smartype Generator")
+//        description.set("Generator ")
+//        url.set("https://github.com/mParticle/smartype")
+//        licenses {
+//          license {
+//            name.set("The Apache License, Version 2.0")
+//            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+//          }
+//        }
+//        developers {
+//          developer {
+//            id.set("samdozor")
+//            name.set("Sam Dozor")
+//            email.set("sdozor@mparticle.com")
+//          }
+//          developer {
+//            id.set("peterjenkins")
+//            name.set("Peter Jenkins")
+//            email.set("pjenkins@mparticle.com")
+//          }
+//        }
+//        scm {
+//          connection.set("scm:git:git://github.com/mParticle/smartype.git")
+//          developerConnection.set("scm:git:ssh://github.com/mParticle/smartype.git")
+//          url.set("https://github.com/mParticle/smartype")
+//        }
+//      }
+//    }
   }
 }

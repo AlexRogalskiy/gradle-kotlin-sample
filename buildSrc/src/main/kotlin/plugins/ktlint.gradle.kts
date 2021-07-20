@@ -34,6 +34,7 @@ configure<KtlintExtension> {
   ignoreFailures.set(true)
   enableExperimentalRules.set(true)
   additionalEditorconfigFile.set(file("${project.rootDir}/.editorconfig"))
+  disabledRules.set(setOf("final-newline"))
 
   reporters {
     reporter(ReporterType.PLAIN)

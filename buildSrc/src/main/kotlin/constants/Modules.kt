@@ -18,4 +18,5 @@ package constants
 object Modules {
     const val appflow = "appflow"
     const val testflow = "testflow"
+    const val patterns = "patterns"
 }

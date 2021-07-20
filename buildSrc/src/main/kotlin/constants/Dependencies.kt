@@ -30,6 +30,8 @@ object Dependencies {
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
         const val kotlinx_serialization =
             "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinx_serialization}"
+        const val kotlinx_datetime =
+            "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlin_datetime}"
 
         // Clikt library dependencies
         const val clikt =
