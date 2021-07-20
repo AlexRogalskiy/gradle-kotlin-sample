@@ -161,6 +161,7 @@ tasks {
         "-Xopt-in=kotlin.RequiresOptIn",
         "-Xopt-in=kotlin.time.ExperimentalTime",
         "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xallow-result-return-type",
         "-Xinline-classes"
       )
     }

@@ -15,7 +15,11 @@
  */
 package io.nullables.api.playground.patterns.utils
 
+import java.net.URL
+
 object Utils {
+
+    val urlResult: URL = parseUrl("http://someurl")
 
     enum class ExitCode {
         COMPILATION_ERROR,
@@ -23,6 +27,9 @@ object Utils {
         SCRIPT_EXECUTION_ERROR,
         OK
     }
+
+    fun parseUrl(url: String): URL =
+        kotlin.runCatching { URL(url) }.getOrThrow()
 
     fun throwGradleExceptionIfError(exitCode: ExitCode) {
         when (exitCode) {
