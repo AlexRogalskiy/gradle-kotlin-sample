@@ -44,5 +44,7 @@ rootProject.name = "gradle-kotlin-sample"
 include(
   "appflow",
   "testflow",
+  "commons",
+  "algorithms",
   "patterns"
 )
