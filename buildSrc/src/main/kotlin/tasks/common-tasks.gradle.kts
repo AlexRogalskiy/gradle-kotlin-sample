@@ -41,6 +41,8 @@ configurations {
 
 java {
   sourceSets {
+//    main.kotlin.srcDirs += 'src/main'
+//    test.kotlin.srcDirs += 'src/test'
     map { it.java.srcDir("src/${it.name}/kotlin") }
   }
 }

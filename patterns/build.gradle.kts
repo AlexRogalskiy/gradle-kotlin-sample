@@ -25,10 +25,12 @@ repositories {
 
 dependencies {
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:${Dependencies.Libs.JUNIT_VERSION}")
+  testImplementation("org.assertj:assertj-core:${Dependencies.Libs.ASSERT_VERSION}")
 }
 
 object Dependencies {
   object Libs {
     const val JUNIT_VERSION = "1.4.30-RC"
+    const val ASSERT_VERSION = "3.11.1"
   }
 }
