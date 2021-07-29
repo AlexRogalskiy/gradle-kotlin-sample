@@ -1,3 +1,5 @@
+package io.nullables.api.playground.commons.exception
+
 /**
  * Means that something went wrong while AsyncAPI schema generation.
  *
@@ -5,6 +7,6 @@
  * @since 1.0.0-RC1
  */
 class AsyncAPISchemaGenerationException(
-        override val message: String?,
-        override val cause: Throwable?
-): Exception(message, cause)
+    override val message: String?,
+    override val cause: Throwable?
+) : Exception(message, cause)
