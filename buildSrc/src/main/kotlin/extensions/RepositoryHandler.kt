@@ -25,9 +25,8 @@ fun RepositoryHandler.applyDefaults() {
     google()
     mavenCentral()
     mavenLocal()
-    jcenter()
-    maven {
-        name = "KotlinX"
-        url = URI.create("https://dl.bintray.com/kotlin/kotlinx")
-    }
+//    maven {
+//        name = "KotlinX"
+//        url = URI.create("https://dl.bintray.com/kotlin/kotlinx")
+//    }
 }

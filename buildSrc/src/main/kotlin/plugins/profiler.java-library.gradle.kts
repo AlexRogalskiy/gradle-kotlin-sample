@@ -22,8 +22,8 @@ plugins {
 }
 
 repositories {
-    jcenter()
-    maven {
+  mavenCentral()
+  maven {
         url = uri("https://repo.gradle.org/gradle/repo")
     }
 }

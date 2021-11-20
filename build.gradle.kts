@@ -23,12 +23,12 @@ repositories {
   mavenCentral()
   mavenLocal()
   google()
-  jcenter {
-    content {
-      includeGroup("org.jetbrains.kotlinx")
-      includeGroup("io.arrow-kt")
-    }
-  }
+//  jcenter {
+//    content {
+//      includeGroup("org.jetbrains.kotlinx")
+//      includeGroup("io.arrow-kt")
+//    }
+//  }
 
   maven("https://oss.sonatype.org/content/repositories/snapshots/")
   maven("https://oss.jfrog.org/artifactory/oss-snapshot-local/")
@@ -36,16 +36,16 @@ repositories {
   maven("https://plugins.gradle.org/m2/")
   maven("https://kotlin.bintray.com/kotlinx")
 
-  maven("https://dl.bintray.com/serpro69/maven")
-  maven("https://dl.bintray.com/arrow-kt/arrow-kt")
-  maven("https://dl.bintray.com/kotlin/kotlin-eap")
-  maven("https://dl.bintray.com/kategory/maven")
-  maven("https://dl.bintray.com/kotlin/kotlinx")
+//  maven("https://dl.bintray.com/serpro69/maven")
+//  maven("https://dl.bintray.com/arrow-kt/arrow-kt")
+//  maven("https://dl.bintray.com/kotlin/kotlin-eap")
+//  maven("https://dl.bintray.com/kategory/maven")
+//  maven("https://dl.bintray.com/kotlin/kotlinx")
 }
 
 plugins {
   id(Plugins.kotlinJvm)
-  id(Plugins.kotlinKapt)
+//  id(Plugins.kotlinKapt)
   id(Plugins.shadow)
   id(Plugins.versions)
   //id(Plugins.compatValidator)
@@ -74,8 +74,8 @@ subprojects {
 
   kotlin.sourceSets["main"].kotlin.srcDirs("$buildDir/generated/kotlin/config")
 
-  group = project.extra["appGroup"]
-  version = project.extra["appVersion"]
+  group = project.extra["appGroup"]!!
+  version = project.extra["appVersion"]!!
   description = project.extra["appDescription"] as String
 
   dependencies {
@@ -88,8 +88,8 @@ subprojects {
     implementation(Dependencies.Core.kotlin_stdlib_jdk8)
 
     // annotation processors
-    kapt(Dependencies.Core.arrow_meta)
-    kaptTest(Dependencies.Core.arrow_meta)
+//    kapt(Dependencies.Core.arrow_meta)
+//    kaptTest(Dependencies.Core.arrow_meta)
 
     // command line args parsing library dependencies
     implementation(Dependencies.Core.clikt)

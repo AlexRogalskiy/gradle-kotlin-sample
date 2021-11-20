@@ -29,12 +29,12 @@ repositories {
   mavenLocal() // used to publish and test local gradle plugin changes
   maven("https://plugins.gradle.org/m2/")
   gradlePluginPortal()
-  jcenter() {
-    content {
-      // detekt needs 'kotlinx-html' for the html report
-      includeGroup("org.jetbrains.kotlinx")
-    }
-  }
+//  jcenter() {
+//    content {
+//      // detekt needs 'kotlinx-html' for the html report
+//      includeGroup("org.jetbrains.kotlinx")
+//    }
+//  }
 }
 
 dependencies {
@@ -64,10 +64,10 @@ dependencies {
 
 object PluginVersions {
   const val kotlin = "1.4.30-RC"
-  const val detekt = "1.15.0"
+  const val detekt = "1.19.0-RC2"
   const val github_release = "2.2.12"
   const val oss_license = "0.10.2"
-  const val ktlint = "9.3.0"
+  const val ktlint = "10.2.0"
   const val spotless = "5.9.0"
   const val test_logger = "2.1.1"
   const val shadow = "5.2.0"

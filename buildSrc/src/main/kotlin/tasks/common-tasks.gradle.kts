@@ -27,7 +27,7 @@ import utils.parallelForks
 
 plugins {
   id("org.jetbrains.kotlin.jvm") apply false
-  id("org.jetbrains.kotlin.kapt") apply false
+//  id("org.jetbrains.kotlin.kapt") apply false
 
 //  id("maven") apply false
   id("java") apply false
@@ -47,9 +47,9 @@ java {
   }
 }
 
-kapt {
-  useBuildCache = true
-}
+//kapt {
+//  useBuildCache = false
+//}
 
 configure<SourceSetContainer> {
   named("main") {
