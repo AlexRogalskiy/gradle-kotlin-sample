@@ -22,6 +22,8 @@ import common.addJUnit5TestDependencies
 repositories {
   mavenCentral()
   mavenLocal()
+  maven { url "https://repo.spring.io/snapshot" }
+  maven { url "https://repo.spring.io/milestone" }
   google()
 //  jcenter {
 //    content {
