@@ -1,0 +1,142 @@
+/*
+ * Copyright (C) 2021. Alexander Rogalskiy. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.nullables.api.playground.commons.asyncapi
+
+import io.nullables.api.playground.commons.exception.AsyncAPISchemaGenerationException
+import io.nullables.api.playground.commons.interfaces.Logger
+import io.nullables.api.playground.commons.model.GenerationSources
+import org.reflections.Reflections
+import org.reflections.scanners.SubTypesScanner
+import org.reflections.util.ConfigurationBuilder
+import org.reflections.util.FilterBuilder
+import java.net.URLClassLoader
+
+/**
+ * Loads classes which extends [com.asyncapi.v2.model.AsyncAPI].
+ *
+ * @param logger logger to use for logging.
+ * @param sources sources to work with.
+ *
+ * @author Pavel Bodiachevskii
+ * @since 1.0.0-RC1
+ */
+open class AsyncAPISchemaLoader(
+    private val logger: Logger,
+    private val sources: GenerationSources
+) {
+
+    /**
+     * Loads classes from provided sources in [GenerationSettings.sources]
+     *
+     * @throws AsyncAPISchemaGenerationException in case when something went wrong.
+     * @return read-only [Set] of [Class]
+     */
+    @Throws(AsyncAPISchemaGenerationException::class)
+    open fun load(): Set<Class<*>> {
+        logger.info("schemas loader: looking for schemas")
+        val loadedClasses = loadClasses()
+        val loadedClassesFromPackages = loadedClassesFromPackages()
+
+        return loadedClasses + loadedClassesFromPackages
+    }
+
+    @Throws(AsyncAPISchemaGenerationException::class)
+    protected fun loadClasses(): MutableSet<Class<*>> {
+        val classesToLoad = sources.classes
+        val loadedClasses = mutableSetOf<Class<*>>()
+
+        logger.info("[classes]: loading...")
+
+        if (classesToLoad.isEmpty()) {
+            logger.info("[classes]: nothing to load")
+
+            return mutableSetOf()
+        }
+
+        logger.info("[classes]: loading ${classesToLoad.size} classes")
+
+        classesToLoad.forEach { className ->
+            logger.info("[classes]: loading $className")
+            try {
+                loadedClasses.add(sources.classLoader.loadClass(className))
+            } catch (classNotFoundException: ClassNotFoundException) {
+                logger.error("[classes]: can't load $className - ${classNotFoundException.message}")
+                throw AsyncAPISchemaGenerationException(
+                    "Can't load class: $className",
+                    classNotFoundException
+                )
+            }
+        }
+
+        if (loadedClasses.isEmpty()) {
+            logger.info("[classes]: no classes loaded")
+        } else {
+            logger.info("[classes]: loaded ${loadedClasses.size} classes")
+        }
+
+        return loadedClasses
+    }
+
+    @Throws(AsyncAPISchemaGenerationException::class)
+    protected fun loadedClassesFromPackages(): MutableSet<Class<*>> {
+        val packagesToScan = sources.packages
+        val loadedClassesFromPackages = mutableSetOf<Class<*>>()
+
+        logger.info("[packages]: searching...")
+
+        if (packagesToScan.isEmpty()) {
+            logger.info("[packages]: no classes found to load")
+
+            return mutableSetOf()
+        }
+
+        logger.info("[packages]: scanning ${packagesToScan.size} packages")
+
+        packagesToScan.forEach { packageName ->
+            logger.info("[packages]: scanning $packageName")
+            try {
+                val reflections = Reflections(
+                    ConfigurationBuilder()
+                        .forPackages(packageName)
+                        .filterInputsBy(FilterBuilder().includePackage(packageName))
+                        .addScanners(SubTypesScanner(false))
+                        .addUrls((sources.classLoader as URLClassLoader).urLs.asList())
+                        .addClassLoader(sources.classLoader)
+                )
+
+                val foundClasses = reflections.getSubTypesOf(AsyncAPI::class.java)
+                logger.info("[packages]: found ${foundClasses.size} classes in $packageName")
+                foundClasses.map { it.toString() }.toList().forEach { logger.info(it) }
+
+                loadedClassesFromPackages.addAll(foundClasses)
+            } catch (exception: Exception) {
+                logger.error("[classes]: can't load classes from $packageName - ${exception.message}")
+                throw AsyncAPISchemaGenerationException(
+                    "Can't load classes from: $packageName",
+                    exception
+                )
+            }
+        }
+
+        if (loadedClassesFromPackages.isEmpty()) {
+            logger.info("[packages]: no classes loaded")
+        } else {
+            logger.info("[packages]: loaded ${loadedClassesFromPackages.size} classes")
+        }
+
+        return loadedClassesFromPackages
+    }
+}

@@ -16,6 +16,7 @@
 package extensions
 
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import java.net.URI
 
 /**
  * Applies default plugins for repository
@@ -23,5 +24,9 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 fun RepositoryHandler.applyDefaults() {
     google()
     mavenCentral()
-    jcenter()
+    mavenLocal()
+//    maven {
+//        name = "KotlinX"
+//        url = URI.create("https://dl.bintray.com/kotlin/kotlinx")
+//    }
 }

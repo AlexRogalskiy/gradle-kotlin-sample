@@ -15,6 +15,8 @@
  */
 package tasks
 
+import extensions.createKotlinMainSources
+import extensions.createKotlinTestSources
 import extensions.shouldTreatCompilerWarningsAsErrors
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
@@ -22,14 +24,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import utils.javaVersion
 import utils.kotlinVersion
 import utils.parallelForks
-import extensions.createKotlinMainSources
-import extensions.createKotlinTestSources
 
 plugins {
   id("org.jetbrains.kotlin.jvm") apply false
-  id("org.jetbrains.kotlin.kapt") apply false
+//  id("org.jetbrains.kotlin.kapt") apply false
 
-  id("maven") apply false
+//  id("maven") apply false
   id("java") apply false
 }
 
@@ -41,13 +41,15 @@ configurations {
 
 java {
   sourceSets {
+//    main.kotlin.srcDirs += 'src/main'
+//    test.kotlin.srcDirs += 'src/test'
     map { it.java.srcDir("src/${it.name}/kotlin") }
   }
 }
 
-kapt {
-  useBuildCache = true
-}
+//kapt {
+//  useBuildCache = false
+//}
 
 configure<SourceSetContainer> {
   named("main") {
@@ -76,7 +78,19 @@ configure<JavaPluginConvention> {
 //  validationDisabled = false
 //}
 
-// additional source sets
+
+//
+//if (JavaVersion.current().isJava9Compatible) {
+//  tasks.withType<JavaCompile>().configureEach { options.compilerArgs.addAll(arrayOf("--release", "8")) }
+//  tasks.withType<GroovyCompile>().configureEach { options.compilerArgs.addAll(arrayOf("--release", "8")) }
+//}
+//
+//val compileJava by project(":").tasks.existing(JavaCompile::class)
+//
+//dependencies {
+//  implementation(files(compileJava.map { it.destinationDir }).builtBy(compileJava))
+//}
+
 sourceSets {
   createKotlinMainSources(this)
   createKotlinTestSources(this)
@@ -135,18 +149,29 @@ tasks {
       jvmTarget = javaVersion.toString()
       apiVersion = kotlinVersion.toString()
       languageVersion = kotlinVersion.toString()
+      allWarningsAsErrors = project.shouldTreatCompilerWarningsAsErrors()
 
-      kotlinOptions.freeCompilerArgs = listOf(
+      freeCompilerArgs = listOf(
         "-progressive",
         "-Xuse-ir",
+        "-Xjsr305=strict",
+        "-Xjvm-default=enable",
         "-Xskip-runtime-version-check",
+        "-Xskip-prerelease-check",
         "-Xdisable-default-scripting-plugin",
         "-Xuse-experimental=kotlin.Experimental",
         "-Xopt-in=kotlin.RequiresOptIn",
+        "-Xopt-in=kotlin.time.ExperimentalTime",
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xallow-result-return-type",
         "-Xinline-classes"
       )
-      kotlinOptions.allWarningsAsErrors = project.shouldTreatCompilerWarningsAsErrors()
     }
+  }
+
+  withType<Javadoc> {
+    (options as CoreJavadocOptions).addStringOption("Xdoclint:none", "-quiet")
+    options.encoding = "UTF-8"
   }
 
   withType<Test> {
@@ -238,6 +263,31 @@ tasks {
 
   registering(Delete::class) {
     delete(allprojects.map { it.buildDir })
+    delete(File("buildSrc\\build"))
 //    delete(rootProject.buildDir)
   }
+
+  val packageFat by creating(Zip::class) {
+    from(compileKotlin)
+    from(processResources)
+
+    into("lib") { from(configurations.runtimeClasspath) }
+
+    dirMode = 0b111101101 // 0755
+    fileMode = 0b111101101 // 0755
+  }
+
+  val packageLibs by creating(Zip::class) {
+    into("java/lib") { from(configurations.runtimeClasspath) }
+
+    dirMode = 0b111101101 // 0755
+    fileMode = 0b111101101 // 0755
+  }
+
+  val packageSkinny by creating(Zip::class) {
+    from(compileKotlin)
+    from(processResources)
+  }
+
+  build { dependsOn(packageSkinny) }
 }

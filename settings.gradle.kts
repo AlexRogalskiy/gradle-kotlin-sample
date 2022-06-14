@@ -16,11 +16,11 @@
 pluginManagement {
   repositories {
     mavenCentral()
-    jcenter()
     gradlePluginPortal()
 
-    maven("https://dl.bintray.com/kotlin/kotlin-eap/")
-    maven("https://dl.bintray.com/kotlin/kotlin-dev/")
+//    maven("https://dl.bintray.com/kotlin/kotlin-eap/")
+//    maven("https://dl.bintray.com/kotlin/kotlin-dev/")
+//    maven("https://dl.bintray.com/kotlin/kotlinx/")
     maven("https://plugins.gradle.org/m2/")
   }
 }
@@ -42,5 +42,12 @@ rootProject.name = "gradle-kotlin-sample"
 
 include(
   "appflow",
-  "testflow"
+  "testflow",
+  "commons",
+  "algorithms",
+  "patterns"
 )
+
+rootProject.children.forEach {
+  it.buildFileName = "${it.name}.gradle.kts"
+}

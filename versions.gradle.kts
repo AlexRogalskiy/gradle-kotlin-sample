@@ -23,4 +23,8 @@ extra.apply {
   this["appDescription"] = appDescription
   this["appGroup"] = appGroup
   this["appVersion"] = appVersion
+
+  this["signing.keyId"] = System.getenv("mavenSigningKeyId")
+  this["signing.secretKeyRingFile"] = System.getenv("mavenSigningKeyRingFile")
+  this["signing.password"] = System.getenv("mavenSigningKeyPassword")
 }

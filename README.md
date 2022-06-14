@@ -26,6 +26,7 @@
 - [☝ Getting Started](#-getting-started)
 - [👉 Development](#-development)
 - [📝 Versioning](#-versioning)
+- [🐛 Issues](#-issues)
 - [🌹 Authors](#-authors)
 - [💕 Contributing](#-contributing)
 - [🚨 Visitor stats](#-visitor-stats)
@@ -60,6 +61,10 @@ _**Gradle Kotlin Sample**_ has experimental support for **Gitpod**, a pre-config
 ## 📝 _Versioning_
 
 The project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/AlexRogalskiy/gradle-kotlin-sample/tags).
+
+## 🐛 _Issues_
+
+[![DeepSource](https://deepsource.io/gh/AlexRogalskiy/gradle-kotlin-sample.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/AlexRogalskiy/gradle-kotlin-sample/?ref=repository-badge)
 
 ## 🌹 _Authors_
 

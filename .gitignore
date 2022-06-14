@@ -3,7 +3,6 @@
 #
 bin/
 tmp/
-api/
 build/
 packages/
 target/

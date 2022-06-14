@@ -1,0 +1,44 @@
+name: Automerge release bump PR
+
+on:
+  pull_request_target:
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
+  pull_request_review:
+    types:
+      - submitted
+
+jobs:
+
+  autoapprove:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Autoapproving
+        uses: hmarr/auto-approve-action@v2
+        if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+  automerge:
+    needs: [ autoapprove ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automerging
+        uses: pascalgn/automerge-action@v0.13.0
+        if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_LOGIN: AlexRogalskiy
+          MERGE_LABELS: ""
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_RETRIES: "20"
+          MERGE_RETRY_SLEEP: "20000"

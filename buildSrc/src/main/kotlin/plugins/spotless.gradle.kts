@@ -96,6 +96,7 @@ configure<SpotlessExtension> {
       rootProject.file("spotless/copyright.java"),
       "^(package|object|import|interface|@file|//startfile)"
     )
+    googleJavaFormat()
     removeUnusedImports()
     trimTrailingWhitespace()
     indentWithSpaces()

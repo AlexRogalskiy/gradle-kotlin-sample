@@ -15,7 +15,73 @@
  */
 package utils
 
+import org.gradle.api.Project
 import java.io.File
+
+import java.util.regex.Pattern
+import java.util.regex.Pattern.MULTILINE
+
+private const val whitespaceRegex = "\\s"
+private const val SPACE_TOMBSTONE = '\u0003'
+
+private const val SLASH_STAR_ESCAPE = "\u0004\u0005"
+private const val STAR_SLASH_ESCAPE = "\u0005\u0004"
+
+internal fun indexOfCommentEscapeSequences(s: String) =
+    s.indexOfAny(listOf(SLASH_STAR_ESCAPE, STAR_SLASH_ESCAPE))
+
+/**
+ * kotlin-compiler's KDoc lexer doesn't correctly handle nested slash-star comments, so we escape
+ * them into tombstones, format, then unescape.
+ */
+internal fun escapeKDoc(s: String): String {
+    val startMarkerIndex = s.indexOf("/*")
+    val endMarkerIndex = s.lastIndexOf("*/")
+
+    if (startMarkerIndex == -1 || endMarkerIndex == -1) {
+        throw RuntimeException("KDoc with no /** and/or */")
+    }
+
+    return s.substring(0, startMarkerIndex + 3) +
+        s.substring(startMarkerIndex + 3, endMarkerIndex)
+            .replace("/*", SLASH_STAR_ESCAPE)
+            .replace("*/", STAR_SLASH_ESCAPE) +
+        s.substring(endMarkerIndex)
+}
+
+internal fun unescapeKDoc(s: String): String =
+    s.replace(SLASH_STAR_ESCAPE, "/*").replace(STAR_SLASH_ESCAPE, "*/")
+
+internal val String.dotIdentifier
+    get() = replace("-", "")
+        .replace(".", "")
+        .replace(Regex(whitespaceRegex), "")
+
+internal val Project.dotIdentifier get() = "$group$name".dotIdentifier
+
+internal fun String.indexOfWhitespaceTombstone() = this.indexOf(SPACE_TOMBSTONE)
+
+internal fun String.nonEmptyPrepend(prepend: String) =
+    if (isNotEmpty()) prepend + this else this
+
+internal fun String.toHyphenCase(): String {
+    if (isBlank()) return this
+
+    return this[0].toLowerCase().toString() + toCharArray()
+        .map { it.toString() }
+        .drop(1)
+        .joinToString(separator = "") { if (it[0].isUpperCase()) "-${it[0].toLowerCase()}" else it }
+}
+
+/**
+ * Google-java-format removes trailing spaces when it emits formatted code, which is a problem for
+ * multiline string literals. We trick it by replacing the last trailing space in such cases with a
+ * tombstone, a character that's unlikely to be used in a regular program. After formatting, we
+ * replace it back to a space.
+ */
+internal fun replaceTrailingWhitespaceWithTombstone(s: String): String {
+    return Pattern.compile(" ($)", MULTILINE).matcher(s).replaceAll("$SPACE_TOMBSTONE$1")
+}
 
 /**
  * Executes the given command in specified working dir

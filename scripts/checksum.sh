@@ -1,4 +1,5 @@
 #!/bin/bash
+
 RESULT_FILE=$1
 
 if [ -f $RESULT_FILE ]; then
